@@ -102,16 +102,16 @@ int main(int argc, const char * argv[]) {
         // insert code here...
         // 类似于printf，输出一些信息，同样看到了熟悉了hello world!
         NSLog(@"Hello, World!");
-        
+
         // 第二步声明变量，并且初始化
 		 // 这里使用到了两个方法，我们在第二讲会具体讲解什么是方法
         // alloc 分配空间
         // init 初始化
         Student *stu = [[Student alloc] init];
-        
+
         // 输出stu
         NSLog(@"%@", stu);
-        
+
     }
     return 0;
 }
