@@ -17,6 +17,8 @@ NSDate *date3 = [NSDate dateWithTimeInterval:20 sinceDate:date];
 
 ##获取秒数
 
+
+
 ##比较
 
 ##NSDateFormatter
