@@ -4,9 +4,9 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>introduction | </title>
+        <title>NSMutableString | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="本书主要对OC的一些基本内容进行讲解，希望大家能够多多指教。">
+        <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
         <meta name="HandheldFriendly" content="true"/>
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -18,8 +18,10 @@
     
     
     
-    <link rel="next" href="./class_and_object.html" />
+    <link rel="next" href="./NSNumber.html" />
     
+    
+    <link rel="prev" href="./NSString.html" />
     
 
         
@@ -31,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="0" data-basepath="." data-revision="1428930095940">
+    <div class="book"  data-level="3.3" data-basepath="." data-revision="1428930095940">
     
 
 <div class="book-summary">
@@ -49,7 +51,7 @@
         
     
         
-        <li class="chapter active" data-level="0" data-path="index.html">
+        <li class="chapter " data-level="0" data-path="index.html">
             
                 
                     <a href="./index.html">
@@ -144,7 +146,7 @@
         </li>
     
         
-        <li class="chapter " data-level="3.3" data-path="NSMutableString.html">
+        <li class="chapter active" data-level="3.3" data-path="NSMutableString.html">
             
                 
                     <a href="./NSMutableString.html">
@@ -569,9 +571,44 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_13">
                     
-                        <p>本书主要对OC的一些基本内容进行讲解，希望大家能够多多指教。</p>
+                        <p>大家在使用的过程一定注意一点，不要<font color = "red">越界</font></p>
+<p>并且NSMutableString使用的修改字符串的方法，都是在改变自己本身，大家可以注意到都没有<font color = "red">返回值</font>，这就是和NSString的区别</p>
+<p>但是NSString是其父类，意味着NSMutableString的对象也可以调用父类的所有的公开方法。</p>
+<ul>
+<li><a href="#init">初始化</a></li>
+<li><a href="#insert">插入</a></li>
+<li><a href="#delete">删除</a></li>
+<li><a href="#append">追加</a></li>
+<li><a href="#replace">替换</a></li>
+</ul>
+<p><span id = "init"></p>
+<h2 id="">初始化</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 采用父类的方法进行初始化</span>
+<span class="hljs-built_in">NSMutableString</span> *string = [<span class="hljs-built_in">NSMutableString</span> stringWithFormat:<span class="hljs-string">@"hello world!"</span>];
+</code></pre>
+<p><span id = "insert"></p>
+<h2 id="">插入</h2>
+<pre><code class="lang-objc">[string insertString:<span class="hljs-string">@"my"</span> atIndex:<span class="hljs-number">5</span>];
+</code></pre>
+<p><span id = "delete"></p>
+<h2 id="">删除</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 从第1个开始，删除2个</span>
+[string deleteCharactersInRange:NSMakeRange(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)];
+</code></pre>
+<p><span id = "append"></p>
+<h2 id="">追加</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 以格式化方式追加</span>
+[string appendFormat:<span class="hljs-string">@"count = %d"</span>, <span class="hljs-number">5</span>];
+<span class="hljs-comment">// 直接字符串追加</span>
+[string appendString:<span class="hljs-string">@"hello"</span>];
+</code></pre>
+<p><span id = "replace"></p>
+<h2 id="">替换</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 在一个范围内进行替换</span>
+[string replaceCharactersInRange:NSMakeRange(<span class="hljs-number">1</span>, <span class="hljs-number">10</span>) withString:<span class="hljs-string">@""</span>];
+</code></pre>
 
                     
                     </section>
@@ -582,8 +619,10 @@
         </div>
 
         
+        <a href="./NSString.html" class="navigation navigation-prev " aria-label="Previous page: NSString"><i class="fa fa-angle-left"></i></a>
         
-        <a href="./class_and_object.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Class and Object"><i class="fa fa-angle-right"></i></a>
+        
+        <a href="./NSNumber.html" class="navigation navigation-next " aria-label="Next page: NSNumber"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

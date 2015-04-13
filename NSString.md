@@ -1,6 +1,20 @@
-NSString 为不可变字符串，大家可以注意查看头文件，任何针对字符串改变的方法都拥有一个NSString *返回值，如果想获得改变的字符串就必须去进行接收。
+NSString 为不可变字符串,大家可以注意查看头文件,任何针对字符串改变的方法都拥有一个NSString *返回值,,如果想获得改变的字符串就必须去进行接收。
 
->初始化方法
+
+
++  [初始化](#init)
++  [查找](#has)
++  [拼接](#append)
++  [截取](#sub)
++  [替换](#replace)
++  [大小写转换](#change)
++  [数值转换](#number)
++  [获取字符](#char)
++  [长度](#length)
++  [比较](#compare)
+
+<span id = "init">
+##初始化方法
 
 ```objc
 // 直接赋值
@@ -11,8 +25,8 @@ NSString *string2 = [NSString stringWithFormat:@"%@", string1];
 char str[] = "hello world";
 NSString *string3 = [NSString stringWithUTF8String:str];
 ```
-
->查找
+<span id = "has">
+##查找
 
 ```objc
 NSString *string = @"www.baidu.com";
@@ -21,7 +35,7 @@ BOOL hasHttp = [string hasPrefix:@"http://"];
 // 是否含有后缀
 BOOL hasCom = [string hasSuffix:@"com"];
 // 是否包含,返回一个结构体类型
-// 其中如果location为NSNotFound 或者 length为0，说明没有找到
+// 其中如果location为NSNotFound 或者 length为0,说明没有找到
 NSRange range = [string rangeOfString:@"baidu"];
 if (range.location == NSNotFound) {
  NSLog(@"no");
@@ -29,7 +43,8 @@ if (range.location == NSNotFound) {
  NSLog(@"yes");
 ```
 
->拼接
+<span id = "append">
+##拼接
 
 ```objc
 
@@ -45,7 +60,8 @@ NSString *str = [string stringByAppendingFormat:@"say:%@", newString];
 
 ```
 
->截取
+<span id = "sub">
+##截取
 
 ```objc
 - (NSString *)substringFromIndex:(NSUInteger)from;
@@ -56,31 +72,31 @@ NSString *str = [string stringByAppendingFormat:@"say:%@", newString];
 
 // 注意字符串下标是从0开始
 NSString *string = @"www.baidu.com";
-// 从第4个开始截取，包括第4个
+// 从第4个开始截取,包括第4个
 NSString *newString1 = [string substringFromIndex:4];
-// 截取到第4个，不包括第4个
+// 截取到第4个,不包括第4个
 NSString *newString2 = [string substringToIndex:4];
-// 从第2个开始截取，截取4个
+// 从第2个开始截取,截取4个
 NSString *newString3 = [string substringWithRange:NSMakeRange(2, 4)];
 
 ```
-
->替换
+<span id = "replace">
+##替换
 
 ```objc
 NSString *string = @"www,baidu,com";
 NSString *newString = [string stringByReplacingOccurrencesOfString:@"," withString:@"."];
 ```
-
->大小写转换
+<span id = "change">
+##大小写转换
 
 ```objc
 NSString *string = @"hello WORLD";
 NSLog(@"%@", string.lowercaseString);
 NSLog(@"%@", string.uppercaseString);
 ```
-
->数值转换
+<span id = "number">
+##数值转换
 
 ```objc
 
@@ -91,14 +107,14 @@ NSLog(@"%@", string.uppercaseString);
 @property (readonly) long long longLongValue NS_AVAILABLE(10_5, 2_0);
 @property (readonly) BOOL boolValue NS_AVAILABLE(10_5, 2_0);
 
-// 意味这些都生成相应的getter方法，所以我们根据自己的要求获取相应的Value
+// 意味这些都生成相应的getter方法,所以我们根据自己的要求获取相应的Value
 
 NSString *string = @"1234";
 int value = [string intValue];
 
 ```
-
->获取字符
+<span id = "char">
+##获取字符
 
 ```objc
 NSString *string = @"hello world";
@@ -107,15 +123,16 @@ NSLog(@"ch = %c", ch);
 
 ```
 
-
->长度
+<span id = "length">
+##长度
 
 ```objc
 NSString *string = @"hello world";
 NSUInteger length = [string length];
 
 ```
->比较
+<span id = "compare">
+##比较
 
 ```objc
 
@@ -133,9 +150,9 @@ if ([string isEqualToString:newString]) {
 } else {
 	 NSLog(@"内容不同");
 }
-  
+
 // 第三种compare比较
-  
+
 if ([string compare:newString] == NSOrderedSame) {
 	 NSLog(@"相同");
 } else if ([string compare:newString] == NSOrderedAscending) {

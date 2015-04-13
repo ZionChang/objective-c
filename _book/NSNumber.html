@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>NSString | </title>
+        <title>NSNumber | </title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -18,10 +18,10 @@
     
     
     
-    <link rel="next" href="./nsnumber.html" />
+    <link rel="next" href="./NSValue.html" />
     
     
-    <link rel="prev" href="./data_type.html" />
+    <link rel="prev" href="./NSMutableString.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.1" data-basepath="." data-revision="1428761452607">
+    <div class="book"  data-level="3.4" data-basepath="." data-revision="1428930095940">
     
 
 <div class="book-summary">
@@ -114,13 +114,29 @@
                 
     
         
-        <li class="chapter active" data-level="3.1" data-path="NSString.html">
+        <li class="chapter " data-level="3.1" data-path="BOOL.html">
+            
+                
+                    <a href="./BOOL.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         BOOL
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="NSString.html">
             
                 
                     <a href="./NSString.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.</b>
+                            <b>3.2.</b>
                         
                          NSString
                     </a>
@@ -130,13 +146,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.2" data-path="nsnumber.html">
+        <li class="chapter " data-level="3.3" data-path="NSMutableString.html">
             
                 
-                    <a href="./nsnumber.html">
+                    <a href="./NSMutableString.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.2.</b>
+                            <b>3.3.</b>
+                        
+                         NSMutableString
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="3.4" data-path="NSNumber.html">
+            
+                
+                    <a href="./NSNumber.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
                         
                          NSNumber
                     </a>
@@ -146,13 +178,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.3" data-path="NSValue.html">
+        <li class="chapter " data-level="3.5" data-path="NSValue.html">
             
                 
                     <a href="./NSValue.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.3.</b>
+                            <b>3.5.</b>
                         
                          NSValue
                     </a>
@@ -162,13 +194,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.4" data-path="nsdate.html">
+        <li class="chapter " data-level="3.6" data-path="nsdate.html">
             
                 
                     <a href="./nsdate.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.6.</b>
                         
                          NSDate
                     </a>
@@ -178,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.5" data-path="NSArray.html">
+        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+            
+                
+                    <a href="./NSNull.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSNull
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.5.</b>
+                            <b>3.8.</b>
                         
                          NSArray
                     </a>
@@ -194,15 +242,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.6" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+            
+                
+                    <a href="./NSMutableArray.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                         NSMutableArray
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.6.</b>
+                            <b>3.10.</b>
                         
                          NSDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+            
+                
+                    <a href="./NSMutableDictionary.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                         NSMutableDictionary
                     </a>
                 
             
@@ -491,16 +571,160 @@
                 <div class="page-inner">
                 
                 
+                    <section class="normal" id="section-gitbook_14">
+                    
+                        <ul>
+<li><a href="#init">初始化</a></li>
+<li><a href="#value">获取值</a></li>
+<li><a href="#compare">比较</a></li>
+<li><a href="#formatter">NSNumberFormatter</a><ul>
+<li><a href="#style">设置格式</a></li>
+<li><a href="#change">类型转换</a></li>
+</ul>
+</li>
+</ul>
+<p><span id = "init"></p>
+<h2 id="">初始化</h2>
+<p>NSNumber在初始化之后，只会获取<font color = "red">有效数据</font>，所以打印出来的3个数据都相同。</p>
+<pre><code class="lang-objc">
+<span class="hljs-built_in">NSNumber</span> *number1 = [<span class="hljs-built_in">NSNumber</span> numberWithDouble:<span class="hljs-number">5.00</span>];
+<span class="hljs-built_in">NSNumber</span> *number2 = [<span class="hljs-built_in">NSNumber</span> numberWithFloat:<span class="hljs-number">5.0</span>f];
+<span class="hljs-built_in">NSNumber</span> *number3 = [<span class="hljs-built_in">NSNumber</span> numberWithInt:<span class="hljs-number">5</span>];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"number1 = %@, number2 = %@, number3 = %@"</span>, number1, number2, number3);
+<span class="hljs-comment">// 打印结果</span>
+<span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">13</span> <span class="hljs-number">19</span>:<span class="hljs-number">48</span>:<span class="hljs-number">47.262</span> OC_Lesson3[<span class="hljs-number">555</span>:<span class="hljs-number">11811</span>] number1 = <span class="hljs-number">5</span>, number2 = <span class="hljs-number">5</span>, number3 = <span class="hljs-number">5</span>
+</code></pre>
+<p>同样NSNumber可以进行简写的形式，类似于上面的便利构造方法</p>
+<pre><code class="lang-objc"><span class="hljs-comment">// 简写</span>
+<span class="hljs-built_in">NSNumber</span> *number = @<span class="hljs-number">5</span>;
+<span class="hljs-comment">// 如果以变量进行简写，只需要加上相应的括号</span>
+<span class="hljs-keyword">int</span> count = <span class="hljs-number">10</span>;
+<span class="hljs-built_in">NSNumber</span> *newNumber = @(count);
+</code></pre>
+<p><span id = "value"></p>
+<h2 id="">获取值</h2>
+<pre><code class="lang-objc"><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">char</span> charValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">char</span> unsignedCharValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">short</span> shortValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">short</span> unsignedShortValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">int</span> intValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> unsignedIntValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">long</span> longValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> unsignedLongValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> longLongValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">long</span> <span class="hljs-keyword">long</span> unsignedLongLongValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">float</span> floatValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-keyword">double</span> doubleValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-built_in">BOOL</span> boolValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) <span class="hljs-built_in">NSInteger</span> integerValue NS_AVAILABLE(<span class="hljs-number">10</span>_5, <span class="hljs-number">2</span>_0);
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) NSUInteger unsignedIntegerValue NS_AVAILABLE(<span class="hljs-number">10</span>_5, <span class="hljs-number">2</span>_0);
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>, <span class="hljs-keyword">copy</span>) <span class="hljs-built_in">NSString</span> *stringValue;
+</code></pre>
+<p>通过以上属性就可以获取相应的基本数据，使用点语法，或者掉方法（getter方法）。</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSNumber</span> *number = @<span class="hljs-number">5</span>;
+<span class="hljs-keyword">int</span> value1 = [number intValue];
+<span class="hljs-keyword">float</span> value2 = [number floatValue];
+</code></pre>
+<p><span id = "compare"></p>
+<h2 id="">比较</h2>
+<h3 id="">地址比较</h3>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSNumber</span> *number1 = @<span class="hljs-number">1234</span>;
+<span class="hljs-built_in">NSNumber</span> *number2 = @<span class="hljs-number">2345</span>;
+
+<span class="hljs-keyword">if</span> (number1 == number2) {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"地址相同"</span>);
+} <span class="hljs-keyword">else</span> {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"地址不同"</span>)
+}
+</code></pre>
+<h3 id="">值比较</h3>
+<h4 id="compare">compare</h4>
+<p>返回值为枚举类型</p>
+<pre><code class="lang-objc">
+<span class="hljs-built_in">NSNumber</span> *number1 = @<span class="hljs-number">1234</span>;
+<span class="hljs-built_in">NSNumber</span> *number2 = @<span class="hljs-number">2345</span>;
+<span class="hljs-keyword">if</span> ([number1 compare:number2] == NSOrderedSame) {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"相同"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> ([number1 compare:number2] == NSOrderedAscending) {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"升序"</span>);
+} <span class="hljs-keyword">else</span> {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"降序"</span>);
+}
+</code></pre>
+<h4 id="isequaltonumber">isEqualToNumber</h4>
+<p>返回值为BOOL类型</p>
+<pre><code class="lang-objc">
+<span class="hljs-built_in">NSNumber</span> *number1 = @<span class="hljs-number">1234</span>;
+<span class="hljs-built_in">NSNumber</span> *number2 = @<span class="hljs-number">2345</span>;
+<span class="hljs-keyword">if</span> ([number1 isEqualToNumber:number2]) {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"值相同"</span>);
+} <span class="hljs-keyword">else</span> {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"值不同"</span>);
+}
+</code></pre>
+<p><span id = "formatter"></p>
+<h2 id="nsnumberformatter">NSNumberFormatter</h2>
+<p><span id = "style"></p>
+<h3 id="">设置格式</h3>
+<p>样式如下</p>
+<pre><code class="lang-objc"><span class="hljs-keyword">typedef</span> NS_ENUM(NSUInteger, NSNumberFormatterStyle) {
+     <span class="hljs-comment">// 没有风格</span>
+    NSNumberFormatterNoStyle = kCFNumberFormatterNoStyle,
+    <span class="hljs-comment">// 12,345 这种样式</span>
+    NSNumberFormatterDecimalStyle = kCFNumberFormatterDecimalStyle,
+    <span class="hljs-comment">// 货币</span>
+    NSNumberFormatterCurrencyStyle = kCFNumberFormatterCurrencyStyle,
+    <span class="hljs-comment">// 百分比</span>
+    NSNumberFormatterPercentStyle = kCFNumberFormatterPercentStyle,
+    <span class="hljs-comment">// 科学计数法</span>
+    NSNumberFormatterScientificStyle = kCFNumberFormatterScientificStyle,
+    <span class="hljs-comment">// 中文</span>
+    NSNumberFormatterSpellOutStyle = kCFNumberFormatterSpellOutStyle,
+};
+</code></pre>
+<p>示例：</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSNumber</span> *number1 = @<span class="hljs-number">1234</span>;
+NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+[formatter setNumberStyle:NSNumberFormatterPercentStyle];
+<span class="hljs-built_in">NSString</span> *string = [formatter stringFromNumber:number1];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"string = %@"</span>, string);
+</code></pre>
+<p><span id = "change"></p>
+<h3 id="">类型转换</h3>
+<pre><code class="lang-objc">
+<span class="hljs-comment">// 给定一个number转换成string</span>
+- (<span class="hljs-built_in">NSString</span> *)stringFromNumber:(<span class="hljs-built_in">NSNumber</span> *)number;
+<span class="hljs-comment">// 给定一个string转换成number</span>
+- (<span class="hljs-built_in">NSNumber</span> *)numberFromString:(<span class="hljs-built_in">NSString</span> *)string;
+</code></pre>
+<p>示例:</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSNumber</span> *number1 = @<span class="hljs-number">1234</span>;
+
+NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+[formatter setNumberStyle:NSNumberFormatterPercentStyle];
+
+<span class="hljs-comment">// 相互转换</span>
+<span class="hljs-built_in">NSString</span> *string = [formatter stringFromNumber:number1];
+
+<span class="hljs-built_in">NSNumber</span> *number = [formatter numberFromString:string];
+
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"string = %@"</span>, string);
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"number = %@"</span>, number);
+</code></pre>
+
+                    
+                    </section>
+                
                 
                 </div>
             </div>
         </div>
 
         
-        <a href="./data_type.html" class="navigation navigation-prev " aria-label="Previous page: Data type"><i class="fa fa-angle-left"></i></a>
+        <a href="./NSMutableString.html" class="navigation navigation-prev " aria-label="Previous page: NSMutableString"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./nsnumber.html" class="navigation navigation-next " aria-label="Next page: NSNumber"><i class="fa fa-angle-right"></i></a>
+        <a href="./NSValue.html" class="navigation navigation-next " aria-label="Next page: NSValue"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

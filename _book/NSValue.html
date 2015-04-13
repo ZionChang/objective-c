@@ -21,7 +21,7 @@
     <link rel="next" href="./nsdate.html" />
     
     
-    <link rel="prev" href="./nsnumber.html" />
+    <link rel="prev" href="./NSNumber.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.3" data-basepath="." data-revision="1428761452607">
+    <div class="book"  data-level="3.5" data-basepath="." data-revision="1428930095940">
     
 
 <div class="book-summary">
@@ -114,13 +114,29 @@
                 
     
         
-        <li class="chapter " data-level="3.1" data-path="NSString.html">
+        <li class="chapter " data-level="3.1" data-path="BOOL.html">
+            
+                
+                    <a href="./BOOL.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         BOOL
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2" data-path="NSString.html">
             
                 
                     <a href="./NSString.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.1.</b>
+                            <b>3.2.</b>
                         
                          NSString
                     </a>
@@ -130,13 +146,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.2" data-path="nsnumber.html">
+        <li class="chapter " data-level="3.3" data-path="NSMutableString.html">
             
                 
-                    <a href="./nsnumber.html">
+                    <a href="./NSMutableString.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.2.</b>
+                            <b>3.3.</b>
+                        
+                         NSMutableString
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4" data-path="NSNumber.html">
+            
+                
+                    <a href="./NSNumber.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
                         
                          NSNumber
                     </a>
@@ -146,13 +178,13 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.3" data-path="NSValue.html">
+        <li class="chapter active" data-level="3.5" data-path="NSValue.html">
             
                 
                     <a href="./NSValue.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.3.</b>
+                            <b>3.5.</b>
                         
                          NSValue
                     </a>
@@ -162,13 +194,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.4" data-path="nsdate.html">
+        <li class="chapter " data-level="3.6" data-path="nsdate.html">
             
                 
                     <a href="./nsdate.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.4.</b>
+                            <b>3.6.</b>
                         
                          NSDate
                     </a>
@@ -178,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.5" data-path="NSArray.html">
+        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+            
+                
+                    <a href="./NSNull.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSNull
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.5.</b>
+                            <b>3.8.</b>
                         
                          NSArray
                     </a>
@@ -194,15 +242,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.6" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+            
+                
+                    <a href="./NSMutableArray.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.9.</b>
+                        
+                         NSMutableArray
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.6.</b>
+                            <b>3.10.</b>
                         
                          NSDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+            
+                
+                    <a href="./NSMutableDictionary.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.11.</b>
+                        
+                         NSMutableDictionary
                     </a>
                 
             
@@ -491,13 +571,87 @@
                 <div class="page-inner">
                 
                 
+                    <section class="normal" id="section-gitbook_17">
+                    
+                        <p>我们有时为了数据存储方便，我们希望将一些自定义数据类型(结构体、共用体等)封装成对象，那么此时我们就会用到<code>NSValue</code></p>
+<ul>
+<li><a href="#system">系统结构体</a><ul>
+<li><a href="#system-encapsulation">封装</a></li>
+<li><a href="#system-decapsulation">解封装</a></li>
+</ul>
+</li>
+<li><a href="#custom">自定义结构体</a><ul>
+<li><a href="#custom-encapsulation">封装</a></li>
+<li><a href="#custom-decapsulation">解封装</a></li>
+</ul>
+</li>
+</ul>
+<p><span id = "system"></p>
+<h2 id="">系统结构体</h2>
+<p>常用方法列表</p>
+<pre><code class="lang-objc">
+<span class="hljs-comment">// 封装</span>
++ (NSValue *)valueWithRange:(<span class="hljs-built_in">NSRange</span>)range;
++ (NSValue *)valueWithPoint:(NSPoint)point;
++ (NSValue *)valueWithSize:(NSSize)size;
++ (NSValue *)valueWithRect:(NSRect)rect;
+<span class="hljs-comment">// 只能系统10.10或者iOS8.0以上才能使用</span>
++ (NSValue *)valueWithEdgeInsets:(NSEdgeInsets)insets NS_AVAILABLE(<span class="hljs-number">10</span>_10, <span class="hljs-number">8</span>_0);
+
+<span class="hljs-comment">// 获取</span>
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) NSPoint pointValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) NSSize sizeValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) NSRect rectValue;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">readonly</span>) NSEdgeInsets edgeInsetsValue NS_AVAILABLE(<span class="hljs-number">10</span>_10, <span class="hljs-number">8</span>_0);
+</code></pre>
+<p><span id = "system-encapsulation"></p>
+<h3 id="">封装</h3>
+<p>示例: 封装系统的相对来说比较简单</p>
+<pre><code class="lang-objc">NSValue *value = [NSValue valueWithPoint:CGPointMake(<span class="hljs-number">10</span>, <span class="hljs-number">10</span>)];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, value);
+<span class="hljs-comment">// 打印结果</span>
+<span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">13</span> <span class="hljs-number">20</span>:<span class="hljs-number">21</span>:<span class="hljs-number">12.024</span> OC_Lesson3[<span class="hljs-number">669</span>:<span class="hljs-number">28657</span>] NSPoint: {<span class="hljs-number">10</span>, <span class="hljs-number">10</span>}
+</code></pre>
+<p><span id = "system-decapsulation"></p>
+<h3 id="">解封装</h3>
+<p>解封装就比较简单了，只需要在上面的基础上:</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">CGPoint</span> point = [value pointValue];
+</code></pre>
+<p><span id = "custom"></p>
+<p>常用方法列表</p>
+<pre><code class="lang-objc"><span class="hljs-comment">// 封装</span>
+<span class="hljs-comment">// 参数1：需要存储的结构体指针</span>
+<span class="hljs-comment">// 参数2：使用@encode()关键字，进行转换</span>
++ (NSValue *)valueWithBytes:(<span class="hljs-keyword">const</span> <span class="hljs-keyword">void</span> *)value objCType:(<span class="hljs-keyword">const</span> <span class="hljs-keyword">char</span> *)type;
+
+<span class="hljs-comment">// 解封装</span>
+<span class="hljs-comment">// 参数1：需要接受的结构体指针</span>
+- (<span class="hljs-keyword">void</span>)getValue:(<span class="hljs-keyword">void</span> *)value;
+</code></pre>
+<h2 id="">自定义结构体</h2>
+<p><span id = "custom-encapsulation"></p>
+<h3 id="">封装</h3>
+<pre><code class="lang-objc">Student stu = {<span class="hljs-string">"zhangsan"</span>, <span class="hljs-number">78</span>};
+NSValue *value = [NSValue valueWithBytes:&amp;stu objCType:@encode(Student)];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, value);
+</code></pre>
+<p><span id = "custom-decapsulation"></p>
+<h3 id="">解封装</h3>
+<pre><code class="lang-objc">Student newStu;
+[value getValue:&amp;newStu];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"name = %s, score = %.2f"</span>, newStu<span class="hljs-variable">.name</span>, newStu<span class="hljs-variable">.score</span>);
+</code></pre>
+
+                    
+                    </section>
+                
                 
                 </div>
             </div>
         </div>
 
         
-        <a href="./nsnumber.html" class="navigation navigation-prev " aria-label="Previous page: NSNumber"><i class="fa fa-angle-left"></i></a>
+        <a href="./NSNumber.html" class="navigation navigation-prev " aria-label="Previous page: NSNumber"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="./nsdate.html" class="navigation navigation-next " aria-label="Next page: NSDate"><i class="fa fa-angle-right"></i></a>
