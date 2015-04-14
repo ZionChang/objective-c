@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.6" data-basepath="." data-revision="1428930095940">
+    <div class="book"  data-level="3.6" data-basepath="." data-revision="1428937814129">
     
 
 <div class="book-summary">
@@ -571,18 +571,86 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_27">
+                    <section class="normal" id="section-gitbook_32">
                     
                         <h1 id="">日期</h1>
 <p>直接获取的日期都是<font color = "red">格林尼治时间</font>,所以我们获取的时间要少8个小时,如果要获取当前时间,需要用到NSTimeZone,我们待会统一讲解.</p>
 <h2 id="">初始化</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 获取当前时间</span>
+<span class="hljs-built_in">NSDate</span> *date = [<span class="hljs-built_in">NSDate</span> date];
+<span class="hljs-comment">// 获取1970年10秒后的时间</span>
+<span class="hljs-built_in">NSDate</span> *date1 = [<span class="hljs-built_in">NSDate</span> dateWithTimeIntervalSince1970:<span class="hljs-number">10</span>];
+<span class="hljs-comment">// 获取现在20秒后的时间</span>
+<span class="hljs-built_in">NSDate</span> *date2 = [<span class="hljs-built_in">NSDate</span> dateWithTimeIntervalSinceNow:<span class="hljs-number">20</span>];
+<span class="hljs-comment">// 获取从date开始的20秒后的时间</span>
+<span class="hljs-built_in">NSDate</span> *date3 = [<span class="hljs-built_in">NSDate</span> dateWithTimeInterval:<span class="hljs-number">20</span> sinceDate:date];
+</code></pre>
+<h2 id="">获取秒数</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// NSTimerInterval 等价于 double</span>
+<span class="hljs-built_in">NSTimeInterval</span> timeInterval = [date timeIntervalSince1970];
+</code></pre>
+<h2 id="">比较</h2>
+<p>方法列表</p>
+<pre><code class="lang-objc">- (<span class="hljs-built_in">NSDate</span> *)earlierDate:(<span class="hljs-built_in">NSDate</span> *)anotherDate;
+- (<span class="hljs-built_in">NSDate</span> *)laterDate:(<span class="hljs-built_in">NSDate</span> *)anotherDate;
+- (NSComparisonResult)compare:(<span class="hljs-built_in">NSDate</span> *)other;
+- (<span class="hljs-built_in">BOOL</span>)isEqualToDate:(<span class="hljs-built_in">NSDate</span> *)otherDate;
+</code></pre>
+<p>示例:</p>
 <pre><code class="lang-objc"><span class="hljs-built_in">NSDate</span> *date = [<span class="hljs-built_in">NSDate</span> date];
 <span class="hljs-built_in">NSDate</span> *date1 = [<span class="hljs-built_in">NSDate</span> dateWithTimeIntervalSince1970:<span class="hljs-number">10</span>];
-<span class="hljs-built_in">NSDate</span> *date2 = [<span class="hljs-built_in">NSDate</span> dateWithTimeIntervalSinceNow:<span class="hljs-number">20</span>];
+
+<span class="hljs-built_in">NSDate</span> *earlierDate = [date earlierDate:date1];
+<span class="hljs-built_in">NSDate</span> *laterDate = [date1 laterDate:date1];
+
+NSComparisonResult result = [date compare:date1];
+<span class="hljs-keyword">if</span> (result == NSOrderedAscending) {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"升序"</span>);
+} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (result == NSOrderedSame) {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"相同"</span>);
+} <span class="hljs-keyword">else</span> {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"降序"</span>);
+}
+
+<span class="hljs-keyword">if</span> ([date isEqualToDate:date1]) {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"相同"</span>);
+} <span class="hljs-keyword">else</span> {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"不同"</span>);
+}
 </code></pre>
-<h2 id="">增加</h2>
-<h2 id="">比较</h2>
 <h2 id="nsdateformatter">NSDateFormatter</h2>
+<p>示例:</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSDate</span> *date = [<span class="hljs-built_in">NSDate</span> date];
+
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+<span class="hljs-comment">// 使用系统格式化</span>
+[formatter setTimeStyle:NSDateFormatterFullStyle];
+[formatter setDateStyle:NSDateFormatterFullStyle];
+
+<span class="hljs-built_in">NSString</span> *string = [formatter stringFromDate:date];
+
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"string = %@"</span>, string);
+</code></pre>
+<p>打印结果:</p>
+<pre><code class="lang-objc">
+<span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">13</span> <span class="hljs-number">21</span>:<span class="hljs-number">52</span>:<span class="hljs-number">09.471</span> OC_Lesson3[<span class="hljs-number">1217</span>:<span class="hljs-number">78328</span>] string = <span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">13</span> <span class="hljs-number">01</span>:<span class="hljs-number">52</span>:<span class="hljs-number">09</span>
+</code></pre>
+<p>同样我们也可以自定义样式:</p>
+<p>自定义样式可以查看<a href="http://archerzz.ninja/ios/formatter-character.html" target="_blank">http://archerzz.ninja/ios/formatter-character.html</a></p>
+<pre><code class="lang-objc">
+<span class="hljs-built_in">NSDate</span> *date = [<span class="hljs-built_in">NSDate</span> date];
+
+NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+<span class="hljs-comment">// 自定义样式</span>
+[formatter setDateFormat:<span class="hljs-string">@"yyyy-MM-dd HH:mm:ss"</span>];
+
+<span class="hljs-built_in">NSString</span> *string = [formatter stringFromDate:date];
+
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"string = %@"</span>, string);
+</code></pre>
+<p>打印结果:</p>
+<pre><code class="lang-objc"><span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">13</span> <span class="hljs-number">21</span>:<span class="hljs-number">54</span>:<span class="hljs-number">43.036</span> OC_Lesson3[<span class="hljs-number">1233</span>:<span class="hljs-number">79562</span>] string = <span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">13</span> <span class="hljs-number">21</span>:<span class="hljs-number">54</span>:<span class="hljs-number">43</span>
+</code></pre>
 
                     
                     </section>

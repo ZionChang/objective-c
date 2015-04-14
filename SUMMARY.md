@@ -15,6 +15,8 @@
    * [NSMutableArray](NSMutableArray.md)
    * [NSDictionary](NSDictionary.md)
    * [NSMutableDictionary](NSMutableDictionary.md)
+   * [NSSet](NSSet.md)
+   * [NSMutableSet](NSMutableSet.md)
 * [Memory Management](MemoryManagement.md)
 * [Property](Property.md)
 * [Design pattern](Design-pattern.md)
