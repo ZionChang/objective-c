@@ -40,7 +40,7 @@ NSArray *array2 = @[@"hello", @"world"];
 <span id = "get">
 ##取值
 
-这里有id的详细说明[asdf]()
+这里有id的详细说明[id和instancetype区别](http://archerzz.ninja/ios/id-instancetype.html)
 
 ```objc
 // 取值
