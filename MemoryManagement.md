@@ -3,7 +3,7 @@
 
 说到内存管理就不得不提到ARC(Automatic Reference Counting)模式以及手动管理(Reference counting manually), 我们现在使用的代码都是让系统帮我们管理内存,但是我们有时需要了解到内存到底是怎么分配的,才能解决我们所碰到的一些问题,比如后面大家会遇到的block内存管理等等
 
-##为什么要管理内存 s
+##为什么要管理内存
 
 由于移动设备的内存极其有限，所以每个APP所占的内存也是有限制的，当app所占用的内存较多时，系统就会发出内存警告，这时需要回收一些不需要再继续使用的内存空间，比如回收一些不再使用的对象和变量等。
 
@@ -33,11 +33,11 @@
 * ###你可以获取持有权利用retain
 
 	使用retain该方法
-	
+
 * ###当你不需要的时候,一定要记住放弃持有权
 
 	需要使用release或者autorelease
-	
+
 * ###你一定不要放弃你没有持有的对象
 
 
@@ -90,7 +90,7 @@
 @property (retain) NSString *lastName;
 @property (assign, readonly) NSString *fullName;
 @end
- 
+
 @implementation Person
 // ...
 - (void)dealloc
