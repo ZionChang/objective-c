@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Protocol | 个人网站</title>
+        <title>NSMutableSet | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -18,10 +18,10 @@
     
     
     
-    <link rel="next" href="./block.html" />
+    <link rel="next" href="./MemoryManagement.html" />
     
     
-    <link rel="prev" href="./Extension.html" />
+    <link rel="prev" href="./NSSet.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.3" data-basepath="." data-revision="1429237072810">
+    <div class="book"  data-level="3.14" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -322,7 +322,7 @@
         </li>
     
         
-        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+        <li class="chapter active" data-level="3.14" data-path="NSMutableSet.html">
             
                 
                     <a href="./NSMutableSet.html">
@@ -494,7 +494,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="7.3" data-path="Protocol.html">
+        <li class="chapter " data-level="7.3" data-path="Protocol.html">
             
                 
                     <a href="./Protocol.html">
@@ -619,158 +619,27 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_25">
+                    <section class="normal" id="section-gitbook_16">
                     
-                        <h1 id="">协议</h1>
-<p>OC不能多继承,也没有抽象类这个概念的存在,但是却拥有协议</p>
-<blockquote>
-<ol>
-<li>Protocol：就一个用途,用来声明一大堆的方法（不能声明成员变量）,不能写实现。</li>
-<li>只要某个类遵守了这个协议,就拥有了这个协议中的所有方法声明。</li>
-<li>只要父类遵守了某个协议,那么子类也遵守。</li>
-<li>Protocol声明的方法可以让任何类去实现,protocol就是协议。</li>
-<li>OC不能继承多个类（单继承）但是能够遵守多个协议。继承(:),遵守协议（&lt; &gt;）</li>
-<li>基协议：<NSObject>是基协议,是最根本最基本的协议,其中声明了很多最基本的方法。</li>
-<li>协议可以遵守协议,一个协议遵守了另一个协议,就可以拥有另一份协议中的方法声明。</li>
-</ol>
-</blockquote>
-<ul>
-<li><a href="#definition">协议的定义</a></li>
-<li><a href="#how">如何遵守协议</a></li>
-<li><a href="#example">举例</a></li>
-<li><a href="#delegate">委托设计模式</a></li>
-</ul>
-<p><span id = "definition"></p>
-<h2 id="">协议的定义</h2>
-<pre><code class="lang-objc">
-<span class="hljs-class"><span class="hljs-keyword">@protocol</span> 协议名称 &lt;<span class="hljs-title">NSObject</span>&gt;</span>
-
-<span class="hljs-comment">//方法声明列表</span>
-
-<span class="hljs-keyword">@end</span>;
+                        <h1 id="nsmutableset">NSMutableSet</h1>
+<p>首先我们来初始化两个set</p>
+<pre><code class="lang-objc">NSMutableSet *muSet = [NSMutableSet set];
+<span class="hljs-built_in">NSSet</span> *set = [<span class="hljs-built_in">NSSet</span> setWithObjects:<span class="hljs-string">@"hello"</span>,<span class="hljs-string">@"world"</span>,<span class="hljs-string">@"ios"</span>, <span class="hljs-literal">nil</span>];
 </code></pre>
-<p><span id = "how"></p>
-<h2 id="">如何遵守协议</h2>
-<p>（1）类遵守协议</p>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> 类名：父类名 &lt;协议名称1,协议名称2&gt;</span>
-
-<span class="hljs-keyword">@end</span>
+<h2 id="">增加</h2>
+<pre><code class="lang-objc">[muSet addObject:<span class="hljs-string">@"hello"</span>];
 </code></pre>
-<p>（2）协议遵守协议</p>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> 协议名称 &lt;其他协议名称&gt;</span>
-
-<span class="hljs-keyword">@end</span>;
+<h2 id="">合并</h2>
+<pre><code class="lang-objc">[muSet unionSet:set];
 </code></pre>
-<p>3.协议方法声明中的关键字</p>
-<pre><code class="lang-objc">（<span class="hljs-number">1</span>）required （默认）要求实现,若没有实现则警告但不报错
-
-（<span class="hljs-number">2</span>）Optional 不要求实现
+<h2 id="">截取</h2>
+<pre><code class="lang-objc">[muSet addObject:<span class="hljs-string">@"asdf"</span>];
+<span class="hljs-comment">// 此时 由于muSet中@"asdf"在set中不存在,所以自动删除</span>
+[muSet intersectSet:set];
 </code></pre>
-<p>4.定义变量时遵守协议的限制</p>
-<pre><code class="lang-objc">
-类名&lt;协议名称&gt; *变量名    <span class="hljs-built_in">NSObject</span>&lt;Myprotocol&gt; *obj;
-
-Id  &lt;协议名称&gt;  变量名   <span class="hljs-keyword">id</span>  &lt;Myprotocol&gt; obj1;
-</code></pre>
-<p>5.Property中声明的属性也可以做遵守协议的限制</p>
-<pre><code class="lang-objc"><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span> ,<span class="hljs-keyword">strong</span> ) 类名&lt;协议名称&gt; *属性名；
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span> ,<span class="hljs-keyword">strong</span> ) <span class="hljs-keyword">id</span>&lt;协议名称&gt;  属性名；
-</code></pre>
-<p><span id = "example"></p>
-<h2 id="">举例</h2>
-<p>接下来我们创建一个协议,我们在Person.h文件中直接写一个协议</p>
-<pre><code class="lang-objc">
-<span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">WorkerProtocol</span>&lt;<span class="hljs-title">NSObject</span>&gt;</span>
-
-<span class="hljs-comment">// 必须工作8个小时</span>
-<span class="hljs-keyword">@required</span>
-- (<span class="hljs-keyword">void</span>)workEightHour;
-
-<span class="hljs-comment">// 可以中途上厕所</span>
-<span class="hljs-keyword">@optional</span>
-- (<span class="hljs-keyword">void</span>)goToWC;
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Person</span> : <span class="hljs-title">NSObject</span></span>
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>然后我们让Person遵守这个协议</p>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Person</span> : <span class="hljs-title">NSObject</span> &lt;<span class="hljs-title">WorkerProtocol</span>&gt;</span>
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>最后在Person.m文件中实现协议中必须实现的方法,可选的方法就看情况而定.</p>
-<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)workEightHour
-{
-    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"ok"</span>);
-}
-</code></pre>
-<p><span id = "delegate"></p>
-<h2 id="">委托设计模式</h2>
-<p>首先我们来创建一个Worker继承与Person,我们来模拟租房子的过程,其中我们需要创建一份协议,并且让中介(Agent)来遵守这份协议</p>
-<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Person.h"</span></span>
-<span class="hljs-preprocessor">#import <span class="hljs-title">"RIMIProtocol.h"</span></span>
-
-<span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">RentProtocol</span> &lt;<span class="hljs-title">NSObject</span>&gt;</span>
-
-<span class="hljs-comment">// 我需要代理人告诉我房子的一些信息</span>
-- (<span class="hljs-built_in">NSString</span> *)tellMeSomeInformation:(<span class="hljs-built_in">NSString</span> *)information
-                        money:(<span class="hljs-keyword">double</span>)money;
-
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Worker</span> : <span class="hljs-title">Person</span> &lt;<span class="hljs-title">RIMIProtocol</span>&gt;</span>
-<span class="hljs-comment">// 设置一个代理人,主要使用assgin,并且使用id类型,因为不定义只有中介能够帮我们找寻房子</span>
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-keyword">id</span>&lt;RentProtocol&gt; delegate;
-
-<span class="hljs-comment">// 寻找一个中介</span>
-- (<span class="hljs-keyword">void</span>)findAAgent;
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>实现文件</p>
-<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)findAAgent
-{
-    <span class="hljs-comment">// 创建一个代理人</span>
-    Agent * agent = [[Agent alloc] init];
-    <span class="hljs-comment">// 进行关联</span>
-    <span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> = agent;
-    <span class="hljs-comment">// 判断当前代理人是否存在以及是否遵守这份协议</span>
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> &amp;&amp; [<span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> conformsToProtocol:<span class="hljs-class"><span class="hljs-keyword">@protocol</span>(<span class="hljs-title">RentProtocol</span>)]) </span>{
-         <span class="hljs-comment">// 最后让其调用协议中的方法</span>
-        <span class="hljs-built_in">NSString</span> *result = [<span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> tellMeSomeInformation:<span class="hljs-string">@"两室一厅"</span> money:<span class="hljs-number">2000</span>];
-        <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"result = %@"</span>, result);
-    }
-    [agent release];
-}
-</code></pre>
-<p>创建一个Agent继承与Person,并且遵守该协议</p>
-<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Person.h"</span></span>
-<span class="hljs-preprocessor">#import <span class="hljs-title">"Worker.h"</span></span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Agent</span> : <span class="hljs-title">Person</span> &lt;<span class="hljs-title">RentProtocol</span>&gt;</span>
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>然后实现</p>
-<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Agent.h"</span></span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Agent</span></span>
-
-- (<span class="hljs-built_in">NSString</span> *)tellMeSomeInformation:(<span class="hljs-built_in">NSString</span> *)information
-                        money:(<span class="hljs-keyword">double</span>)money
-{
-    <span class="hljs-keyword">return</span> [<span class="hljs-built_in">NSString</span> stringWithFormat:<span class="hljs-string">@"终于找到了, 两室一厅，价格是2200，我给谈一下，可以给你优惠100"</span>];
-}
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>最后我们在main函数中调用即可</p>
-<pre><code class="lang-objc">Worker * worker = [[Worker alloc] init];
-[worker findAAgent];
+<h2 id="">删除</h2>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSSet</span> *set1 = [<span class="hljs-built_in">NSSet</span> setWithObjects:<span class="hljs-string">@"world"</span>,<span class="hljs-string">@"ios"</span>, <span class="hljs-literal">nil</span>];
+[muSet minusSet:set1];
 </code></pre>
 
                     
@@ -782,10 +651,10 @@ Id  &lt;协议名称&gt;  变量名   <span class="hljs-keyword">id</span>  &lt;
         </div>
 
         
-        <a href="./Extension.html" class="navigation navigation-prev " aria-label="Previous page: Extension"><i class="fa fa-angle-left"></i></a>
+        <a href="./NSSet.html" class="navigation navigation-prev " aria-label="Previous page: NSSet"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./block.html" class="navigation navigation-next " aria-label="Next page: Block"><i class="fa fa-angle-right"></i></a>
+        <a href="./MemoryManagement.html" class="navigation navigation-next " aria-label="Next page: Memory Management"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

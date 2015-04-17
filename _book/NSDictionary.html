@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>NSDictionary | </title>
+        <title>NSDictionary | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.10" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="3.11" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter " data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter active" data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,13 +611,50 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_14">
+                    
+                        <h1 id="nsdictionary">NSDictionary</h1>
+<p>字典是在iOS开发中经常会用到的一种数据类型,其中包含key和value,是一种无序集合,需要注意几点</p>
+<ol>
+<li>key不会进行重复</li>
+<li>键值成对出现</li>
+<li>其中不能设置为nil</li>
+</ol>
+<ul>
+<li><a href="#init">初始化</a></li>
+<li><a href="#value">取值</a></li>
+<li><a href="#traversal">遍历</a></li>
+</ul>
+<p><span id = "init"></p>
+<h2 id="">初始化</h2>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSDictionary</span> *dic1 = [<span class="hljs-built_in">NSDictionary</span> dictionaryWithObjectsAndKeys:<span class="hljs-string">@"zhangsan"</span>, <span class="hljs-string">@"name"</span>, @<span class="hljs-number">24</span>, <span class="hljs-string">@"age"</span>,  <span class="hljs-literal">nil</span>];
+<span class="hljs-comment">// 初始化简写</span>
+<span class="hljs-built_in">NSDictionary</span> *dic2 = @{<span class="hljs-string">@"name"</span>:<span class="hljs-string">@"lisi"</span>, <span class="hljs-string">@"age"</span>:@<span class="hljs-number">34</span>};
+</code></pre>
+<p><span id = "value"></p>
+<h2 id="">取值</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 取值操作</span>
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, [dic1 objectForKey:<span class="hljs-string">@"age"</span>]);
+</code></pre>
+<p><span id = "traversal"></p>
+<h2 id="">遍历</h2>
+<pre><code class="lang-objc"><span class="hljs-keyword">for</span> (<span class="hljs-keyword">id</span> obj <span class="hljs-keyword">in</span> dic1<span class="hljs-variable">.allKeys</span>) {
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, [dic1 objectForKey:obj]);
+   <span class="hljs-comment">// 简写</span>
+   <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, dic1[obj]);
+}
+</code></pre>
+
+                    
+                    </section>
                 
                 
                 </div>

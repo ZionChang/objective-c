@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Extension | </title>
+        <title>Extension | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.2" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="7.2" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter " data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,13 +611,37 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_8">
+                    
+                        <h1 id="">延展</h1>
+<p>延展主要是为相应的类添加其私有属性,以及私有方法.</p>
+<p>比如我们现在创建一个Person类,我们想把我们的age以及birthday进行私有</p>
+<p>只要如下即可,在.m文件</p>
+<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Person.h"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Person</span> ()</span>
+
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-keyword">int</span> age;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-built_in">NSString</span> *birthday;
+
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Person</span></span>
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p>大家已经主要到,在@implementation上面多了一个@interface,在这里面我们就可以进行私有属性以及私有方法的定制了,并且外部是无法进行访问的.</p>
+
+                    
+                    </section>
                 
                 
                 </div>

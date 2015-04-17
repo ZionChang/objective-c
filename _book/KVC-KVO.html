@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>KVC-KVO | </title>
+        <title>KVC-KVO | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.3" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="6.3" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter " data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,13 +611,146 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_9">
+                    
+                        <h1 id="kvc-kvo-">KVC-KVO(键盘编码-键值观察)</h1>
+<h2 id="kvc-key-value-coding">KVC (key-value-coding)</h2>
+<p>方法列表</p>
+<pre><code class="lang-objc"><span class="hljs-comment">// 获取通过key</span>
+- (<span class="hljs-keyword">id</span>)valueForKey:(<span class="hljs-built_in">NSString</span> *)key;
+<span class="hljs-comment">// 设置值</span>
+- (<span class="hljs-keyword">void</span>)setValue:(<span class="hljs-keyword">id</span>)value forKey:(<span class="hljs-built_in">NSString</span> *)key;
+- (<span class="hljs-keyword">id</span>)valueForKeyPath:(<span class="hljs-built_in">NSString</span> *)keyPath;
+- (<span class="hljs-keyword">void</span>)setValue:(<span class="hljs-keyword">id</span>)value forKeyPath:(<span class="hljs-built_in">NSString</span> *)keyPath;
+</code></pre>
+<p>首先我们创建一个类</p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Student</span> : <span class="hljs-title">NSObject</span></span>
+
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSString</span> *name;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSString</span> *sex;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSString</span> *code;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-built_in">CGPoint</span> position;
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p>按照我们以前的赋值方式,我们肯定会这样做</p>
+<pre><code class="lang-objc">Student *stu = [[Student alloc] init];
+<span class="hljs-comment">// 进行赋值</span>
+stu<span class="hljs-variable">.name</span> = <span class="hljs-string">@"zhangsan"</span>;
+stu<span class="hljs-variable">.sex</span> = <span class="hljs-string">@"male"</span>;
+</code></pre>
+<p>而如果使用KVC方式就可以使用以下代码</p>
+<pre><code class="lang-objc"><span class="hljs-comment">// 等价于</span>
+[stu setValue:<span class="hljs-string">@"zhangsan"</span> forKey:<span class="hljs-string">@"name"</span>];
+[stu setValue:<span class="hljs-string">@"name"</span> forKey:<span class="hljs-string">@"sex"</span>];
+</code></pre>
+<p>这两种方式在这里可以说是等价的,但是需要注意如果设置值对应的key不存在属性列表中,那么会存在<font color = "red">崩溃现象</font>,崩溃信息如下:</p>
+<pre><code class="lang-objc">[stu setValue:@"helo" forKey:@"phone"];
+
+reason: '[&lt;Student 0x100206af0&gt; setValue:forUndefinedKey:]: this class is not key value coding-compliant for the key phone.'
+</code></pre>
+<p>所以,一定要注意key是存在属性列表中才可以使用KVC</p>
+<p>接着我们来看另外一种情况,如果这个学生拥有一个老师,他想去设置老师对应的值,利用KVC应该怎么实现呢</p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Teacher</span> : <span class="hljs-title">NSObject</span></span>
+
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-built_in">CGPoint</span> position; <span class="hljs-comment">// 位置</span>
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) <span class="hljs-built_in">NSString</span> *name;   <span class="hljs-comment">// 姓名</span>
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p>然后我们为学生添加一个老师属性</p>
+<pre><code class="lang-objc"><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">strong</span>) Teacher *teacher;
+</code></pre>
+<p>最后我们在main函数中</p>
+<pre><code class="lang-objc">Teacher *teacher = [[Teacher alloc] init];
+<span class="hljs-comment">// 建立关联</span>
+stu<span class="hljs-variable">.teacher</span> = teacher;
+<span class="hljs-comment">// 间接设置</span>
+stu<span class="hljs-variable">.teacher</span><span class="hljs-variable">.name</span> = <span class="hljs-string">@"Jone"</span>;
+<span class="hljs-comment">// 利用KVC,利用属性名+点+相应的属性名</span>
+[stu setValue:<span class="hljs-string">@"Mary"</span> forKeyPath:<span class="hljs-string">@"teacher.name"</span>];
+<span class="hljs-comment">// 访问</span>
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, stu<span class="hljs-variable">.teacher</span><span class="hljs-variable">.name</span>);
+</code></pre>
+<h2 id="kvo-key-value-observe">KVO (key-value-observe)</h2>
+<p>有时我们需要监听一些属性的改变,然后执行相应的操作,现在我们来模拟一个操作,比如学生发生老师的位置发生改变的时候,就进行相应的操作.</p>
+<p>同样我们在学生类中添加方法</p>
+<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Student.h"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Student</span></span>
+
+- (<span class="hljs-keyword">void</span>)watchTeacherPositionChanged
+{
+<span class="hljs-comment">// 注册</span>
+<span class="hljs-comment">// 1:观察者</span>
+<span class="hljs-comment">// 2:路径</span>
+<span class="hljs-comment">// 3:选项</span>
+<span class="hljs-comment">// 4:一般写 nil 或者 NULL</span>
+    [<span class="hljs-keyword">self</span> addObserver:<span class="hljs-keyword">self</span>
+           forKeyPath:<span class="hljs-string">@"teacher.position"</span>
+              options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+              context:<span class="hljs-string">@"position"</span>];
+
+    }
+</code></pre>
+<p>其次直接在Student.m文件重写该方法</p>
+<pre><code class="lang-objc"><span class="hljs-comment">// 当老师的位置发生改变时,自动调用该方法</span>
+- (<span class="hljs-keyword">void</span>)observeValueForKeyPath:(<span class="hljs-built_in">NSString</span> *)keyPath ofObject:(<span class="hljs-keyword">id</span>)object change:(<span class="hljs-built_in">NSDictionary</span> *)change context:(<span class="hljs-keyword">void</span> *)context
+{
+    <span class="hljs-comment">// 从change这个字典中获取相应的值</span>
+
+    <span class="hljs-keyword">if</span> ([keyPath isEqualToString:<span class="hljs-string">@"teacher.position"</span>]) {
+        NSValue * point = change[<span class="hljs-string">@"new"</span>];
+        <span class="hljs-built_in">CGPoint</span> newPoint = [point pointValue];
+        <span class="hljs-keyword">if</span> (newPoint<span class="hljs-variable">.x</span> == <span class="hljs-keyword">self</span><span class="hljs-variable">.position</span><span class="hljs-variable">.x</span> &amp;&amp; newPoint<span class="hljs-variable">.y</span> == <span class="hljs-keyword">self</span><span class="hljs-variable">.position</span><span class="hljs-variable">.y</span>) {
+            <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@说:老师来了，快点关QQ"</span>, <span class="hljs-keyword">self</span><span class="hljs-variable">.name</span>);
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@说:诶，老师走了，继续！"</span>, <span class="hljs-keyword">self</span><span class="hljs-variable">.name</span>);
+        }
+    }
+
+}
+</code></pre>
+<p>然后在dealloc方法中</p>
+<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)dealloc
+{
+<span class="hljs-comment">// 移除监听</span>
+    [<span class="hljs-keyword">self</span> removeObserver:<span class="hljs-keyword">self</span> forKeyPath:<span class="hljs-string">@"teacher.position"</span>];
+}
+</code></pre>
+<p>最后在main函数中调用</p>
+<pre><code class="lang-objc">Student * stu1 = [[Student alloc] init];
+stu1<span class="hljs-variable">.name</span> = <span class="hljs-string">@"lisi"</span>;
+stu1<span class="hljs-variable">.position</span> = CGPointMake(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+
+
+Student * stu2 = [[Student alloc] init];
+stu2<span class="hljs-variable">.position</span> = CGPointMake(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>);
+stu2<span class="hljs-variable">.name</span> = <span class="hljs-string">@"zhangsan"</span>;
+
+<span class="hljs-comment">// KVC KVO</span>
+Teacher * teacher = [[Teacher alloc] init];
+
+stu1<span class="hljs-variable">.teacher</span> = teacher;
+stu2<span class="hljs-variable">.teacher</span> = teacher;
+<span class="hljs-comment">// KVO</span>
+[stu1 watchTeacherPositionChanged];
+[stu2 watchTeacherPositionChanged];
+teacher<span class="hljs-variable">.position</span> = CGPointMake(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>);
+teacher<span class="hljs-variable">.position</span> = CGPointMake(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>);
+teacher<span class="hljs-variable">.position</span> = CGPointMake(<span class="hljs-number">4</span>, <span class="hljs-number">2</span>);
+</code></pre>
+
+                    
+                    </section>
                 
                 
                 </div>

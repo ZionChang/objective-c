@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Observer | </title>
+        <title>Observer | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.2" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="6.2" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter " data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,13 +611,102 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_22">
+                    
+                        <h1 id="">观察者模式</h1>
+<h2 id="">概念</h2>
+<blockquote>
+<p>观察者模式（Observer）完美的将观察者和被观察的对象分离开。举个例子，用户界面可以作为一个观察者，业务数据是被观察者，用户界面观察业务数据的变化，发现数据变化后，就显示在界面上。面向对象设计的一个原则是：系统中的每个类将重点放在某一个功能上，而不是其他方面。一个对象只做一件事情，并且将他做好。观察者模式在模块之间划定了清晰的界限，提高了应用程序的可维护性和重用性。
+观察者设计模式定义了对象间的一种一对多的依赖关系，以便一个对象的状态发生变化时，所有依赖于它的对象都得到通知并自动刷新。</p>
+</blockquote>
+<h2 id="">实现</h2>
+<p>这三步必须实现</p>
+<ul>
+<li>添加观察者</li>
+<li>发送通知</li>
+<li>移除观察者</li>
+</ul>
+<p>讲解之前我们首先了解4个方法,我们也要使用到系统的一个单例NSNotificationCenter</p>
+<pre><code class="lang-objc"><span class="hljs-comment">// 获取系统通知中心</span>
++ (<span class="hljs-built_in">NSNotificationCenter</span> *)defaultCenter;
+<span class="hljs-comment">// 添加观察者</span>
+<span class="hljs-comment">// 参数1：观察者</span>
+<span class="hljs-comment">// 参数2：观察者的方法</span>
+<span class="hljs-comment">// 参数3：观察的通知姓名</span>
+<span class="hljs-comment">// 参数3：传递的参数</span>
+- (<span class="hljs-keyword">void</span>)addObserver:(<span class="hljs-keyword">id</span>)observer selector:(SEL)aSelector name:(<span class="hljs-built_in">NSString</span> *)aName object:(<span class="hljs-keyword">id</span>)anObject;
+<span class="hljs-comment">// 发送通知</span>
+<span class="hljs-comment">// 参数1：通知的姓名</span>
+<span class="hljs-comment">// 参数2：通知的参数</span>
+- (<span class="hljs-keyword">void</span>)postNotificationName:(<span class="hljs-built_in">NSString</span> *)aName object:(<span class="hljs-keyword">id</span>)anObject;
+<span class="hljs-comment">// 移除观察者</span>
+- (<span class="hljs-keyword">void</span>)removeObserver:(<span class="hljs-keyword">id</span>)observer;
+</code></pre>
+<p>接下来我们模拟一个通知,首先我们创建两个类Student以及Teacher,当铃声响起的时候,老师就调用一个行为,而学生也调用一个行为,相同于一直在监听某个事物</p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Student</span> : <span class="hljs-title">NSObject</span></span>
+
+<span class="hljs-keyword">@end</span>
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Teacher</span> : <span class="hljs-title">NSObject</span></span>
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p>接着我们在.M文件分别写上代码:</p>
+<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Student.h"</span></span>
+
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Student</span></span>
+
+- (<span class="hljs-keyword">void</span>)dealloc
+{
+    <span class="hljs-comment">// 第三步,移除观察者</span>
+    [[<span class="hljs-built_in">NSNotificationCenter</span> defaultCenter] removeObserver:<span class="hljs-keyword">self</span>];
+}
+
+- (instancetype)init
+{
+    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
+        <span class="hljs-comment">// 第一步,添加通知</span>
+        [[<span class="hljs-built_in">NSNotificationCenter</span> defaultCenter] addObserver:<span class="hljs-keyword">self</span> selector:<span class="hljs-keyword">@selector</span>(ring) name:<span class="hljs-string">@"RING"</span> object:<span class="hljs-literal">nil</span>];
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
+}
+
+- (<span class="hljs-keyword">void</span>)ring
+{
+    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"放学了!"</span>);
+}
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p>老师实现文件也是一样,唯一不同的是</p>
+<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)ring
+{
+    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"下班了!"</span>);
+}
+</code></pre>
+<p>然后我们在mian函数中创建相应的对象,并且发送通知</p>
+<pre><code class="lang-objc"><span class="hljs-comment">// 创建对象</span>
+Teacher *teacher1 = [[Teacher alloc] init];
+Student *stu1 = [[Student alloc] init];
+
+<span class="hljs-comment">// 发送通知</span>
+[[<span class="hljs-built_in">NSNotificationCenter</span> defaultCenter] postNotificationName:<span class="hljs-string">@"RING"</span> object:<span class="hljs-literal">nil</span>];
+</code></pre>
+<p>打印结果</p>
+<pre><code class="lang-objc"><span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">15</span> <span class="hljs-number">22</span>:<span class="hljs-number">57</span>:<span class="hljs-number">44.310</span> OC_Lesson5[<span class="hljs-number">2257</span>:<span class="hljs-number">219593</span>] 下班了!
+<span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">15</span> <span class="hljs-number">22</span>:<span class="hljs-number">57</span>:<span class="hljs-number">44.311</span> OC_Lesson5[<span class="hljs-number">2257</span>:<span class="hljs-number">219593</span>] 放学了!
+</code></pre>
+
+                    
+                    </section>
                 
                 
                 </div>

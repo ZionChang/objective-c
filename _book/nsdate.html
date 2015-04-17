@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>NSDate | </title>
+        <title>NSDate | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -18,7 +18,7 @@
     
     
     
-    <link rel="next" href="./NSNull.html" />
+    <link rel="next" href="./NSCalendar.html" />
     
     
     <link rel="prev" href="./NSValue.html" />
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.6" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="3.6" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter " data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,7 +611,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
@@ -575,6 +623,13 @@
                     
                         <h1 id="">日期</h1>
 <p>直接获取的日期都是<font color = "red">格林尼治时间</font>,所以我们获取的时间要少8个小时,如果要获取当前时间,需要用到NSTimeZone,我们待会统一讲解.</p>
+<ul>
+<li><a href="#init">初始化</a></li>
+<li><a href="#seconds">获取秒数</a></li>
+<li><a href="#compare">比较</a></li>
+<li><a href="#formatter">NSDateFormatter</a></li>
+</ul>
+<p><span id = "init"></p>
 <h2 id="">初始化</h2>
 <pre><code class="lang-objc"><span class="hljs-comment">// 获取当前时间</span>
 <span class="hljs-built_in">NSDate</span> *date = [<span class="hljs-built_in">NSDate</span> date];
@@ -585,10 +640,12 @@
 <span class="hljs-comment">// 获取从date开始的20秒后的时间</span>
 <span class="hljs-built_in">NSDate</span> *date3 = [<span class="hljs-built_in">NSDate</span> dateWithTimeInterval:<span class="hljs-number">20</span> sinceDate:date];
 </code></pre>
+<p><span id = "seconds"></p>
 <h2 id="">获取秒数</h2>
 <pre><code class="lang-objc"><span class="hljs-comment">// NSTimerInterval 等价于 double</span>
 <span class="hljs-built_in">NSTimeInterval</span> timeInterval = [date timeIntervalSince1970];
 </code></pre>
+<p><span id = "compare"></p>
 <h2 id="">比较</h2>
 <p>方法列表</p>
 <pre><code class="lang-objc">- (<span class="hljs-built_in">NSDate</span> *)earlierDate:(<span class="hljs-built_in">NSDate</span> *)anotherDate;
@@ -618,6 +675,7 @@ NSComparisonResult result = [date compare:date1];
    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"不同"</span>);
 }
 </code></pre>
+<p><span id = "formatter"></p>
 <h2 id="nsdateformatter">NSDateFormatter</h2>
 <p>示例:</p>
 <pre><code class="lang-objc"><span class="hljs-built_in">NSDate</span> *date = [<span class="hljs-built_in">NSDate</span> date];
@@ -635,13 +693,13 @@ NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
 <pre><code class="lang-objc">
 <span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">13</span> <span class="hljs-number">21</span>:<span class="hljs-number">52</span>:<span class="hljs-number">09.471</span> OC_Lesson3[<span class="hljs-number">1217</span>:<span class="hljs-number">78328</span>] string = <span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">13</span> <span class="hljs-number">01</span>:<span class="hljs-number">52</span>:<span class="hljs-number">09</span>
 </code></pre>
-<p>同样我们也可以自定义样式:</p>
-<p>自定义样式可以查看<a href="http://archerzz.ninja/ios/formatter-character.html" target="_blank">http://archerzz.ninja/ios/formatter-character.html</a></p>
+<p>同样我们也可以<font color = "red">自定义样式</font>:</p>
+<p><font color = "red">自定义样式</font>可以查看<a href="http://archerzz.ninja/ios/formatter-character.html" target="_blank">http://archerzz.ninja/ios/formatter-character.html</a></p>
 <pre><code class="lang-objc">
 <span class="hljs-built_in">NSDate</span> *date = [<span class="hljs-built_in">NSDate</span> date];
 
 NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-<span class="hljs-comment">// 自定义样式</span>
+<span class="hljs-comment">// 自定义样式    </span>
 [formatter setDateFormat:<span class="hljs-string">@"yyyy-MM-dd HH:mm:ss"</span>];
 
 <span class="hljs-built_in">NSString</span> *string = [formatter stringFromDate:date];
@@ -664,7 +722,7 @@ NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
         <a href="./NSValue.html" class="navigation navigation-prev " aria-label="Previous page: NSValue"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./NSNull.html" class="navigation navigation-next " aria-label="Next page: NSNull"><i class="fa fa-angle-right"></i></a>
+        <a href="./NSCalendar.html" class="navigation navigation-next " aria-label="Next page: NSCalendar"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

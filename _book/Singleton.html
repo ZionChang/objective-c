@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Singleton | </title>
+        <title>Singleton | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="6.1" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="6.1" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter " data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,13 +611,124 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_27">
+                    
+                        <h1 id="">单例</h1>
+<ul>
+<li><a href="#concept">概念</a></li>
+<li><a href="#shared">自定义单例</a></li>
+<li><a href="#system">系统单例</a><ul>
+<li><a href="#NSUserDefaults">NSUserDefaults</a></li>
+<li><a href="#synchronize">synchronize</a></li>
+<li><a href="#example">举例</a></li>
+</ul>
+</li>
+</ul>
+<p><span id = "concept"></p>
+<h2 id="">概念</h2>
+<p>单例:代表着无论你对它使用多少次都是使用的<font color = "red"><strong>同一个</strong></font>对象</p>
+<p><img src = "./images/6-1.png"></p>
+<p>如果所示,一个普通的类创建的对象,如果经过几次创建会出来几个不同的对象,而单例在此只会创建出一个对象</p>
+<p>比如在iOS开发中有时你会创建出一个购物车类,而这个购物车无论你在程序的什么地方访问都应该是同一个购物车,这个时候你就可以采取单例模式.</p>
+<p><span id = "shared"></p>
+<h2 id="">自定义单例</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 一般命名为shared开始</span>
++ (instancetype)sharedCar
+{
+    <span class="hljs-keyword">static</span> <span class="hljs-keyword">id</span> instance = <span class="hljs-literal">nil</span>;
+    <span class="hljs-keyword">static</span> <span class="hljs-built_in">dispatch_once_t</span> onceToken;
+    <span class="hljs-comment">// gcd中线程安全,只允许这段代码执行一次</span>
+    <span class="hljs-built_in">dispatch_once</span>(&amp;onceToken, ^{
+        instance = [[<span class="hljs-keyword">self</span> alloc] init];
+    });
+    <span class="hljs-keyword">return</span> instance;
+}
+</code></pre>
+<p>分析代码:</p>
+<ul>
+<li>利用了<font color = "blue">static</font>关键字,这样以来该变量就会一直存储在静态区别,和系统同生共死.</li>
+<li>利用gcd保证 <code>instance = [[self alloc] init];</code>这句代码只会执行一次,也就说明该对象一旦创建出来,就不会被重新创建</li>
+</ul>
+<p><span id = "system"></p>
+<h2 id="">系统单例</h2>
+<p><span id = "NSUserDefaults"></p>
+<h3 id="nsuserdefaults">NSUserDefaults</h3>
+<p>这个单例可以帮助我们实现一些简单的本地化数据.</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSUserDefaults</span> *user1 = [<span class="hljs-built_in">NSUserDefaults</span> standardUserDefaults];
+</code></pre>
+<p>方法列表</p>
+<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)setObject:(<span class="hljs-keyword">id</span>)value forKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-keyword">void</span>)removeObjectForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+
+- (<span class="hljs-built_in">NSString</span> *)stringForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-built_in">NSArray</span> *)arrayForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-built_in">NSDictionary</span> *)dictionaryForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-built_in">NSData</span> *)dataForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-built_in">NSArray</span> *)stringArrayForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-built_in">NSInteger</span>)integerForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-keyword">float</span>)floatForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-keyword">double</span>)doubleForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-built_in">BOOL</span>)boolForKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-built_in">NSURL</span> *)URLForKey:(<span class="hljs-built_in">NSString</span> *)defaultName NS_AVAILABLE(<span class="hljs-number">10</span>_6, <span class="hljs-number">4</span>_0);
+
+- (<span class="hljs-keyword">void</span>)setInteger:(<span class="hljs-built_in">NSInteger</span>)value forKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-keyword">void</span>)setFloat:(<span class="hljs-keyword">float</span>)value forKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-keyword">void</span>)setDouble:(<span class="hljs-keyword">double</span>)value forKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+- (<span class="hljs-keyword">void</span>)setBool:(<span class="hljs-built_in">BOOL</span>)value forKey:(<span class="hljs-built_in">NSString</span> *)defaultName;
+</code></pre>
+<p>大家可以看到,在这里NSUserDefaults使用类似于字典,不管是取值还是存值,但是注意两点:</p>
+<ul>
+<li>key只能是字符串 </li>
+<li>支持基本数据类型存储</li>
+</ul>
+<pre><code class="lang-objc"><span class="hljs-comment">// 存储对象类型</span>
+[user1 setObject:<span class="hljs-string">@"zhangsan"</span> forKey:<span class="hljs-string">@"name"</span>];
+<span class="hljs-comment">// 存储基本类型</span>
+[user1 setInteger:<span class="hljs-number">18</span> forKey:<span class="hljs-string">@"age"</span>];
+<span class="hljs-comment">// 取值</span>
+<span class="hljs-built_in">NSString</span> *name = [user1 objectForKey:<span class="hljs-string">@"name"</span>];
+<span class="hljs-built_in">NSInteger</span> age = [user1 integerForKey:<span class="hljs-string">@"age"</span>];
+</code></pre>
+<p><span id = "synchronize"></p>
+<h3 id="synchronize">synchronize</h3>
+<p>注意:这个方法会自动周期性的进行调用,所以大家在测试的时候,有时不调用该方法也可以取值.</p>
+<pre><code class="lang-objc"><span class="hljs-comment">// 该方法可以进行数据更新,进行本地化</span>
+- (<span class="hljs-built_in">BOOL</span>)synchronize;
+</code></pre>
+<p><span id = "example"></p>
+<h3 id="">举例</h3>
+<p>第一次执行这部分代码</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSUserDefaults</span> *user1 = [<span class="hljs-built_in">NSUserDefaults</span> standardUserDefaults];
+<span class="hljs-comment">// 存储对象类型</span>
+[user1 setObject:<span class="hljs-string">@"zhangsan"</span> forKey:<span class="hljs-string">@"name"</span>];
+<span class="hljs-comment">// 存储基本类型</span>
+[user1 setInteger:<span class="hljs-number">18</span> forKey:<span class="hljs-string">@"age"</span>];
+<span class="hljs-comment">// 取值</span>
+<span class="hljs-built_in">NSString</span> *name = [user1 objectForKey:<span class="hljs-string">@"name"</span>];
+<span class="hljs-built_in">NSInteger</span> age = [user1 integerForKey:<span class="hljs-string">@"age"</span>];
+[user1 synchronize];
+</code></pre>
+<p>然后我们把代码删除,重新写上这部分代码</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSUserDefaults</span> *user1 = [<span class="hljs-built_in">NSUserDefaults</span> standardUserDefaults];
+<span class="hljs-built_in">NSString</span> *name = [user1 objectForKey:<span class="hljs-string">@"name"</span>];
+<span class="hljs-built_in">NSInteger</span> age = [user1 integerForKey:<span class="hljs-string">@"age"</span>];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"name = %@, age = %ld"</span>, name, age);
+</code></pre>
+<p>打印结果</p>
+<pre><code class="lang-objc"><span class="hljs-number">2015</span>-<span class="hljs-number">04</span>-<span class="hljs-number">15</span> <span class="hljs-number">22</span>:<span class="hljs-number">45</span>:<span class="hljs-number">18.334</span> OC_Lesson5[<span class="hljs-number">2200</span>:<span class="hljs-number">213278</span>] name = zhangsan, age = <span class="hljs-number">18</span>
+</code></pre>
+<p>发现这次居然取出上次存储的值了,这就是因为NSUserDefaults可以进行数据持久化</p>
+
+                    
+                    </section>
                 
                 
                 </div>

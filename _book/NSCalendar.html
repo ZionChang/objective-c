@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Protocol | 个人网站</title>
+        <title>NSCalendar | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -18,10 +18,10 @@
     
     
     
-    <link rel="next" href="./block.html" />
+    <link rel="next" href="./NSNull.html" />
     
     
-    <link rel="prev" href="./Extension.html" />
+    <link rel="prev" href="./nsdate.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="7.3" data-basepath="." data-revision="1429237072810">
+    <div class="book"  data-level="3.7" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,7 +210,7 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+        <li class="chapter active" data-level="3.7" data-path="NSCalendar.html">
             
                 
                     <a href="./NSCalendar.html">
@@ -494,7 +494,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="7.3" data-path="Protocol.html">
+        <li class="chapter " data-level="7.3" data-path="Protocol.html">
             
                 
                     <a href="./Protocol.html">
@@ -619,158 +619,209 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_25">
+                    <section class="normal" id="section-gitbook_12">
                     
-                        <h1 id="">协议</h1>
-<p>OC不能多继承,也没有抽象类这个概念的存在,但是却拥有协议</p>
-<blockquote>
-<ol>
-<li>Protocol：就一个用途,用来声明一大堆的方法（不能声明成员变量）,不能写实现。</li>
-<li>只要某个类遵守了这个协议,就拥有了这个协议中的所有方法声明。</li>
-<li>只要父类遵守了某个协议,那么子类也遵守。</li>
-<li>Protocol声明的方法可以让任何类去实现,protocol就是协议。</li>
-<li>OC不能继承多个类（单继承）但是能够遵守多个协议。继承(:),遵守协议（&lt; &gt;）</li>
-<li>基协议：<NSObject>是基协议,是最根本最基本的协议,其中声明了很多最基本的方法。</li>
-<li>协议可以遵守协议,一个协议遵守了另一个协议,就可以拥有另一份协议中的方法声明。</li>
-</ol>
-</blockquote>
+                        <h1 id="nscalendar">NSCalendar</h1>
 <ul>
-<li><a href="#definition">协议的定义</a></li>
-<li><a href="#how">如何遵守协议</a></li>
-<li><a href="#example">举例</a></li>
-<li><a href="#delegate">委托设计模式</a></li>
+<li><a href="#init">初始化</a></li>
+<li><a href="#work">设置工作日</a></li>
+<li><a href="#area">设置区域</a></li>
+<li><a href="#time">设置时区</a></li>
+<li><a href="#calendar">获取日历信息</a></li>
+<li><a href="#components">NSDateComponents</a></li>
+<li><a href="#getComponents">获取时间组件</a></li>
+<li><a href="#create">创建日期</a></li>
+<li><a href="#code">根据身份证获取年龄</a></li>
 </ul>
-<p><span id = "definition"></p>
-<h2 id="">协议的定义</h2>
-<pre><code class="lang-objc">
-<span class="hljs-class"><span class="hljs-keyword">@protocol</span> 协议名称 &lt;<span class="hljs-title">NSObject</span>&gt;</span>
+<p><span id = "init"></p>
+<h2 id="">初始化</h2>
+<h3 id="">获取本地信息</h3>
+<pre><code class="lang-objc"><span class="hljs-comment">//+ currentCalendar</span>
+<span class="hljs-comment">//取得当前用户的逻辑日历</span>
+<span class="hljs-comment">//currentCalendar取得的值会一直保持在cache中,第一次取得以后如果用户修改该系统日历设定，这个值也不会改变。</span>
+<span class="hljs-built_in">NSCalendar</span> *calendar = [<span class="hljs-built_in">NSCalendar</span> currentCalendar];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"calendar = %@"</span>,calendar);
 
-<span class="hljs-comment">//方法声明列表</span>
-
-<span class="hljs-keyword">@end</span>;
+<span class="hljs-comment">//+ (id)autoupdatingCurrentCalendar</span>
+<span class="hljs-comment">//取得当前用户的逻辑日历</span>
+<span class="hljs-comment">//用autoupdatingCurrentCalendar，那么每次取得的值都会是当前系统设置的日历的值。</span>
+<span class="hljs-built_in">NSCalendar</span> *autoupdatingCurrent = [<span class="hljs-built_in">NSCalendar</span> autoupdatingCurrentCalendar];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"autoupdatingCurrent = %@"</span>,autoupdatingCurrent);
 </code></pre>
-<p><span id = "how"></p>
-<h2 id="">如何遵守协议</h2>
-<p>（1）类遵守协议</p>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> 类名：父类名 &lt;协议名称1,协议名称2&gt;</span>
+<h3 id="">自定义日历</h3>
+<pre><code class="lang-objc"><span class="hljs-comment">/*
+iOS8都被替换成其他的字符串，点进头文件就可以看见
+FOUNDATION_EXPORT NSString * const NSGregorianCalendar;        //公历（常用）
+FOUNDATION_EXPORT NSString * const NSBuddhistCalendar;         //佛教日历
+FOUNDATION_EXPORT NSString * const NSChineseCalendar;          //中国农历（常用）
+FOUNDATION_EXPORT NSString * const NSHebrewCalendar;           //希伯来日历
+FOUNDATION_EXPORT NSString * const NSIslamicCalendar;          //伊斯兰历
+FOUNDATION_EXPORT NSString * const NSIslamicCivilCalendar;     //伊斯兰教日历
+FOUNDATION_EXPORT NSString * const NSJapaneseCalendar;         //日本日历(和历，常用)
+FOUNDATION_EXPORT NSString * const NSRepublicOfChinaCalendar;  //中华民国日历（台湾）
+FOUNDATION_EXPORT NSString * const NSPersianCalendar;          //波斯历
+FOUNDATION_EXPORT NSString * const NSIndianCalendar;           //印度日历
+FOUNDATION_EXPORT NSString * const NSISO8601Calendar;          //ISO8601（但是现在还不可用）
+*/</span>
 
-<span class="hljs-keyword">@end</span>
+初始化的时候ident就传入以上数据的一种
+
+- (<span class="hljs-keyword">id</span>)initWithCalendarIdentifier:(<span class="hljs-built_in">NSString</span> *)ident NS_DESIGNATED_INITIALIZER;
 </code></pre>
-<p>（2）协议遵守协议</p>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@protocol</span> 协议名称 &lt;其他协议名称&gt;</span>
-
-<span class="hljs-keyword">@end</span>;
+<p>举例:</p>
+<pre><code class="lang-objc"> <span class="hljs-built_in">NSCalendar</span> *initCalendar = [[<span class="hljs-built_in">NSCalendar</span> alloc]initWithCalendarIdentifier:NSCalendarIdentifierGregorian];
+        <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, initCalendar);
 </code></pre>
-<p>3.协议方法声明中的关键字</p>
-<pre><code class="lang-objc">（<span class="hljs-number">1</span>）required （默认）要求实现,若没有实现则警告但不报错
-
-（<span class="hljs-number">2</span>）Optional 不要求实现
+<p><span id = "work"></p>
+<h2 id="">设置工作日</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">//- setFirstWeekday:</span>
+<span class="hljs-comment">//设置第一个工作日</span>
+<span class="hljs-comment">//设定每周的第一天从星期几开始，比如:</span>
+<span class="hljs-comment">//.  如需设定从星期日开始，则value传入1</span>
+<span class="hljs-comment">//.  如需设定从星期一开始，则value传入2</span>
+<span class="hljs-comment">//.  以此类推</span>
+[initCalendar setFirstWeekday:<span class="hljs-number">1</span>];
 </code></pre>
-<p>4.定义变量时遵守协议的限制</p>
-<pre><code class="lang-objc">
-类名&lt;协议名称&gt; *变量名    <span class="hljs-built_in">NSObject</span>&lt;Myprotocol&gt; *obj;
-
-Id  &lt;协议名称&gt;  变量名   <span class="hljs-keyword">id</span>  &lt;Myprotocol&gt; obj1;
+<p><span id = "area"></p>
+<h2 id="">设置区域</h2>
+<pre><code class="lang-objc">[initCalendar setLocale:[[NSLocale alloc] initWithLocaleIdentifier:<span class="hljs-string">@"en_US"</span>]];
+<span class="hljs-comment">//设定作为(每年及每月)第一周必须包含的最少天数，比如:. 如需设定第一周最少包括7天，则value传入7</span>
+<span class="hljs-comment">//– setMinimumDaysInFirstWeek:</span>
+[initCalendar setMinimumDaysInFirstWeek:<span class="hljs-number">7</span>];
 </code></pre>
-<p>5.Property中声明的属性也可以做遵守协议的限制</p>
-<pre><code class="lang-objc"><span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span> ,<span class="hljs-keyword">strong</span> ) 类名&lt;协议名称&gt; *属性名；
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span> ,<span class="hljs-keyword">strong</span> ) <span class="hljs-keyword">id</span>&lt;协议名称&gt;  属性名；
+<p><span id = "time"></p>
+<h2 id="">设置时区</h2>
+<pre><code class="lang-objc">[initCalendar setTimeZone:[NSTimeZone defaultTimeZone]];
 </code></pre>
-<p><span id = "example"></p>
-<h2 id="">举例</h2>
-<p>接下来我们创建一个协议,我们在Person.h文件中直接写一个协议</p>
-<pre><code class="lang-objc">
-<span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">WorkerProtocol</span>&lt;<span class="hljs-title">NSObject</span>&gt;</span>
+<p><span id = "calendar"></p>
+<h2 id="">获取日历信息</h2>
+<h3 id="">日历标示符</h3>
+<pre><code class="lang-objc"><span class="hljs-comment">//返回日历标示符</span>
+<span class="hljs-built_in">NSString</span> *calendarIdentifier = [initCalendar calendarIdentifier];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"calendarIdentifier = %@"</span>,calendarIdentifier);
+</code></pre>
+<h3 id="">获取每周的第一天</h3>
+<pre><code class="lang-objc"><span class="hljs-comment">//– firstWeekday</span>
+<span class="hljs-comment">//返回日历指定的每周的第一天从星期几开始。缺省为星期天，即firstWeekday = 1</span>
 
-<span class="hljs-comment">// 必须工作8个小时</span>
-<span class="hljs-keyword">@required</span>
-- (<span class="hljs-keyword">void</span>)workEightHour;
+NSUInteger firstWeekday = [initCalendar firstWeekday];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"firstWeekday = %lu"</span>,firstWeekday);
+</code></pre>
+<h3 id="">返回日历指定的地区信息</h3>
+<pre><code class="lang-objc">NSLocale *locale = [initCalendar locale];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"locale = %@"</span>,locale<span class="hljs-variable">.localeIdentifier</span>);
+</code></pre>
+<h3 id="">获取范围</h3>
+<pre><code class="lang-objc"><span class="hljs-comment">//– maximumRangeOfUnit:    //返回单元的最大范围</span>
+<span class="hljs-comment">//- minimumRangeOfUnit:    //返回单元的最小范围 //比如Day Calendar Unit就是一个月最多31天这个意思</span>
+<span class="hljs-built_in">NSRange</span> range = [initCalendar maximumRangeOfUnit:NSCalendarUnitDay];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"range = %lu"</span>,range<span class="hljs-variable">.length</span>);
+<span class="hljs-comment">//- minimumDaysInFirstWeek</span>
+<span class="hljs-comment">//返回日历指定的第一周必须包含的最少天数。</span>
+NSUInteger minimumDays = [initCalendar minimumDaysInFirstWeek];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"minimumDays = %lu"</span>,minimumDays);
+</code></pre>
+<p><span id = "components"></p>
+<h2 id="nsdatecomponents">NSDateComponents</h2>
+<p>获取时间组件</p>
+<pre><code class="lang-objc">NSDateComponents *dc = [[NSDateComponents alloc] init];
+[dc setYear: <span class="hljs-number">2013</span>];
+[dc setMonth: <span class="hljs-number">4</span>];
+[dc setDay: <span class="hljs-number">6</span>];
+<span class="hljs-comment">////</span>
+<span class="hljs-built_in">NSDate</span> *date = [calendar dateFromComponents:dc];
+</code></pre>
+<p><span id = "getComponents"></p>
+<h2 id="">获取时间组件</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">//返回时间组件</span>
 
-<span class="hljs-comment">// 可以中途上厕所</span>
-<span class="hljs-keyword">@optional</span>
-- (<span class="hljs-keyword">void</span>)goToWC;
+<span class="hljs-comment">// 利用逻辑非连接你想要的组件</span>
+<span class="hljs-keyword">unsigned</span> unitFlags = NSCalendarUnitYear | NSCalendarUnitMonth |  NSCalendarUnitDay;
+<span class="hljs-comment">// 获取相应的组件</span>
+NSDateComponents *comps = [initCalendar components:unitFlags fromDate:[<span class="hljs-built_in">NSDate</span> date]];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"NSDateComponents - %lu"</span>,comps<span class="hljs-variable">.year</span>);
 
-<span class="hljs-keyword">@end</span>
+<span class="hljs-comment">//- components:fromDate:toDate:options:</span>
+<span class="hljs-comment">//返回时间组件 比较2个日期</span>
+<span class="hljs-built_in">NSDate</span> *startDate = date;
+<span class="hljs-built_in">NSDate</span> *endDate = [<span class="hljs-built_in">NSDate</span> date];
+
+<span class="hljs-keyword">unsigned</span> <span class="hljs-keyword">int</span> unitFlags2 = NSCalendarUnitMonth | NSCalendarUnitDay;
+NSDateComponents *comps2 = [initCalendar components:unitFlags2 fromDate:startDate  toDate:endDate  options:<span class="hljs-number">0</span>];
+<span class="hljs-built_in">NSInteger</span> months = [comps2 month];
+<span class="hljs-built_in">NSInteger</span> days = [comps2 day];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"months = %ld days = %ld"</span>, months, days);
+</code></pre>
+<p><span id = "create"></p>
+<h2 id="">创建日期</h2>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSCalendar</span> *calendar = [<span class="hljs-built_in">NSCalendar</span> currentCalendar];
+NSDateComponents *comps = [[NSDateComponents alloc] init];
+[comps setYear:<span class="hljs-number">1965</span>];
+[comps setMonth:<span class="hljs-number">1</span>];
+[comps setDay:<span class="hljs-number">1</span>];
+[comps setHour:<span class="hljs-number">2</span>];
+[comps setMinute:<span class="hljs-number">10</span>];
+[comps setSecond:<span class="hljs-number">0</span>];
+<span class="hljs-built_in">NSDate</span> *date = [calendar dateFromComponents:comps];
+<span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"date = %@"</span>,date);
+</code></pre>
+<p><span id = "code"></p>
+<h2 id="">通过身份证获取年龄姓名</h2>
+<p>创建一个Person类,如下:</p>
+<pre><code class="lang-objc"><span class="hljs-preprocessor">#define Code_Number 18      // 身份证号码个数</span>
+<span class="hljs-preprocessor">#define Sex_Start 16        // 性别起始位置</span>
+<span class="hljs-preprocessor">#define Sex_Length 1        // 性别长度</span>
+<span class="hljs-preprocessor">#define Birthday_Start 6    // 出生日期起始位置</span>
+<span class="hljs-preprocessor">#define Birthday_Length 8   // 出生日期长度</span>
 
 <span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Person</span> : <span class="hljs-title">NSObject</span></span>
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>然后我们让Person遵守这个协议</p>
-<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Person</span> : <span class="hljs-title">NSObject</span> &lt;<span class="hljs-title">WorkerProtocol</span>&gt;</span>
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>最后在Person.m文件中实现协议中必须实现的方法,可选的方法就看情况而定.</p>
-<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)workEightHour
 {
-    <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"ok"</span>);
+    <span class="hljs-built_in">NSString</span> * _name;           <span class="hljs-comment">// 姓名</span>
+    <span class="hljs-built_in">NSString</span> * _code;           <span class="hljs-comment">// 身份证号</span>
+    <span class="hljs-built_in">NSString</span> * _sex;            <span class="hljs-comment">// 性别</span>
+    <span class="hljs-built_in">NSString</span> * _birthday;       <span class="hljs-comment">// 出生日期</span>
+    <span class="hljs-built_in">NSInteger</span> _age;             <span class="hljs-comment">// 年龄</span>
 }
+
+- (instancetype)initWithCode:(<span class="hljs-built_in">NSString</span> *)code;
 </code></pre>
-<p><span id = "delegate"></p>
-<h2 id="">委托设计模式</h2>
-<p>首先我们来创建一个Worker继承与Person,我们来模拟租房子的过程,其中我们需要创建一份协议,并且让中介(Agent)来遵守这份协议</p>
-<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Person.h"</span></span>
-<span class="hljs-preprocessor">#import <span class="hljs-title">"RIMIProtocol.h"</span></span>
-
-<span class="hljs-class"><span class="hljs-keyword">@protocol</span> <span class="hljs-title">RentProtocol</span> &lt;<span class="hljs-title">NSObject</span>&gt;</span>
-
-<span class="hljs-comment">// 我需要代理人告诉我房子的一些信息</span>
-- (<span class="hljs-built_in">NSString</span> *)tellMeSomeInformation:(<span class="hljs-built_in">NSString</span> *)information
-                        money:(<span class="hljs-keyword">double</span>)money;
-
-
-<span class="hljs-keyword">@end</span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Worker</span> : <span class="hljs-title">Person</span> &lt;<span class="hljs-title">RIMIProtocol</span>&gt;</span>
-<span class="hljs-comment">// 设置一个代理人,主要使用assgin,并且使用id类型,因为不定义只有中介能够帮我们找寻房子</span>
-<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">nonatomic</span>, <span class="hljs-keyword">assign</span>) <span class="hljs-keyword">id</span>&lt;RentProtocol&gt; delegate;
-
-<span class="hljs-comment">// 寻找一个中介</span>
-- (<span class="hljs-keyword">void</span>)findAAgent;
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>实现文件</p>
-<pre><code class="lang-objc">- (<span class="hljs-keyword">void</span>)findAAgent
+<p>在.m文件中实现相应的根据身份证获取年龄性别等</p>
+<pre><code class="lang-objc">- (instancetype)initWithCode:(<span class="hljs-built_in">NSString</span> *)code
 {
-    <span class="hljs-comment">// 创建一个代理人</span>
-    Agent * agent = [[Agent alloc] init];
-    <span class="hljs-comment">// 进行关联</span>
-    <span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> = agent;
-    <span class="hljs-comment">// 判断当前代理人是否存在以及是否遵守这份协议</span>
-    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> &amp;&amp; [<span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> conformsToProtocol:<span class="hljs-class"><span class="hljs-keyword">@protocol</span>(<span class="hljs-title">RentProtocol</span>)]) </span>{
-         <span class="hljs-comment">// 最后让其调用协议中的方法</span>
-        <span class="hljs-built_in">NSString</span> *result = [<span class="hljs-keyword">self</span><span class="hljs-variable">.delegate</span> tellMeSomeInformation:<span class="hljs-string">@"两室一厅"</span> money:<span class="hljs-number">2000</span>];
-        <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"result = %@"</span>, result);
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init]) {
+    <span class="hljs-comment">// 判断身份证合法</span>
+        <span class="hljs-keyword">if</span> (code<span class="hljs-variable">.length</span> == Code_Number) {
+            _code = code;
+
+            <span class="hljs-comment">// 获取sex的字符串，并且判断是单数还是双数</span>
+            <span class="hljs-built_in">NSString</span> * codeString = [_code substringWithRange:NSMakeRange(Sex_Start, Sex_Length)];
+            <span class="hljs-keyword">if</span> ([codeString integerValue] % <span class="hljs-number">2</span>) {
+                _sex = <span class="hljs-string">@"男"</span>;
+            } <span class="hljs-keyword">else</span> {
+                _sex = <span class="hljs-string">@"女"</span>;
+            }
+            <span class="hljs-comment">// 获取出生日期的字符串</span>
+            _birthday = [_code substringWithRange:NSMakeRange(Birthday_Start, Birthday_Length)];
+            <span class="hljs-comment">// 设置相对应的格式</span>
+            NSDateFormatter * formatter = [[NSDateFormatter alloc] init];
+            <span class="hljs-comment">// 必须和字符串的格式相匹配</span>
+            [formatter setDateFormat:<span class="hljs-string">@"yyyyMMdd"</span>];
+            <span class="hljs-comment">// 获取出生日期</span>
+            <span class="hljs-built_in">NSDate</span> * birthdayDate = [formatter dateFromString:_birthday];
+            <span class="hljs-built_in">NSLog</span>(<span class="hljs-string">@"%@"</span>, birthdayDate);
+            <span class="hljs-comment">// 获取现在日期</span>
+            <span class="hljs-built_in">NSDate</span> * nowDate = [<span class="hljs-built_in">NSDate</span> date];
+            <span class="hljs-comment">// 初始化一个日历(用中国的一个字符串作为标示）</span>
+            <span class="hljs-built_in">NSCalendar</span> * calendar = [[<span class="hljs-built_in">NSCalendar</span> alloc] initWithCalendarIdentifier:NSCalendarIdentifierRepublicOfChina];
+            <span class="hljs-comment">// 设置所需要的枚举，我们这里需要的年</span>
+            NSCalendarUnit unit = NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay;
+            <span class="hljs-comment">// 算出出生日期到现在相差的年数 来获取年龄</span>
+            NSDateComponents * dateComponents = [calendar components:unit fromDate:birthdayDate toDate:nowDate options:NSCalendarWrapComponents];
+            _age = [dateComponents year];
+        }
     }
-    [agent release];
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
 }
-</code></pre>
-<p>创建一个Agent继承与Person,并且遵守该协议</p>
-<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Person.h"</span></span>
-<span class="hljs-preprocessor">#import <span class="hljs-title">"Worker.h"</span></span>
-
-<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Agent</span> : <span class="hljs-title">Person</span> &lt;<span class="hljs-title">RentProtocol</span>&gt;</span>
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>然后实现</p>
-<pre><code class="lang-objc"><span class="hljs-preprocessor">#import <span class="hljs-title">"Agent.h"</span></span>
-
-<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Agent</span></span>
-
-- (<span class="hljs-built_in">NSString</span> *)tellMeSomeInformation:(<span class="hljs-built_in">NSString</span> *)information
-                        money:(<span class="hljs-keyword">double</span>)money
-{
-    <span class="hljs-keyword">return</span> [<span class="hljs-built_in">NSString</span> stringWithFormat:<span class="hljs-string">@"终于找到了, 两室一厅，价格是2200，我给谈一下，可以给你优惠100"</span>];
-}
-
-<span class="hljs-keyword">@end</span>
-</code></pre>
-<p>最后我们在main函数中调用即可</p>
-<pre><code class="lang-objc">Worker * worker = [[Worker alloc] init];
-[worker findAAgent];
 </code></pre>
 
                     
@@ -782,10 +833,10 @@ Id  &lt;协议名称&gt;  变量名   <span class="hljs-keyword">id</span>  &lt;
         </div>
 
         
-        <a href="./Extension.html" class="navigation navigation-prev " aria-label="Previous page: Extension"><i class="fa fa-angle-left"></i></a>
+        <a href="./nsdate.html" class="navigation navigation-prev " aria-label="Previous page: NSDate"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="./block.html" class="navigation navigation-next " aria-label="Next page: Block"><i class="fa fa-angle-right"></i></a>
+        <a href="./NSNull.html" class="navigation navigation-next " aria-label="Next page: NSNull"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>

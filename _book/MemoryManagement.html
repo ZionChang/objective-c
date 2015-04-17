@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Memory Management | </title>
+        <title>Memory Management | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -21,7 +21,7 @@
     <link rel="next" href="./Property.html" />
     
     
-    <link rel="prev" href="./NSMutableDictionary.html" />
+    <link rel="prev" href="./NSMutableSet.html" />
     
 
         
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="4" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="4" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter " data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,7 +611,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
@@ -571,13 +619,95 @@
                 <div class="page-inner">
                 
                 
+                    <section class="normal" id="section-gitbook_10">
+                    
+                        <h1 id="">内存管理</h1>
+<p>说到内存管理就不得不提到ARC(Automatic Reference Counting)模式以及手动管理(Reference counting manually), 我们现在使用的代码都是让系统帮我们管理内存,但是我们有时需要了解到内存到底是怎么分配的,才能解决我们所碰到的一些问题,比如后面大家会遇到的block内存管理等等</p>
+<h2 id="">为什么要管理内存</h2>
+<p>由于移动设备的内存极其有限，所以每个APP所占的内存也是有限制的，当app所占用的内存较多时，系统就会发出内存警告，这时需要回收一些不需要再继续使用的内存空间，比如回收一些不再使用的对象和变量等。</p>
+<h2 id="">内存管理机制</h2>
+<h3 id="retain-count">引用计数(retain count)</h3>
+<ul>
+<li>每个对象都拥有一个引用计数(4个字节用以存储)</li>
+<li>在OC中一旦对象创建出来,引用技术默认为1</li>
+<li>引用计数为0的时候,对象就会被销毁.</li>
+</ul>
+<p>如图所示:</p>
+<p><img src = "./images/5-1.png"></p>
+<p>当对象释放的时候,在NSObject中定义的一个方法dealloc会自动调用,所以我们需要在这里管理相应的内存</p>
+<h2 id="">内存管理基本规则</h2>
+<p>首先说一个对象可以被多次持有,只要该对象被持有,则会继续存在.假如没有被持有了,runtime机制会自动帮我们进行销毁,以下是几个原则:</p>
+<ul>
+<li><h3 id="">你持有你创建的对象</h3>
+<p>  你可以创建一个对象用这些姓名以这些单词开头的方法“alloc”, “new”, “copy”, or “mutableCopy” (for example, alloc, newObject, or mutableCopy)</p>
+</li>
+<li><h3 id="retain">你可以获取持有权利用retain</h3>
+<p>  使用retain该方法</p>
+</li>
+<li><h3 id="">当你不需要的时候,一定要记住放弃持有权</h3>
+<p>  需要使用release或者autorelease</p>
+</li>
+<li><h3 id="">你一定不要放弃你没有持有的对象</h3>
+</li>
+</ul>
+<h2 id="">简单举例</h2>
+<pre><code class="lang-objc">{
+    Person *aPerson = [[Person alloc] init];
+    <span class="hljs-comment">// ...</span>
+    <span class="hljs-built_in">NSString</span> *name = aPerson<span class="hljs-variable">.fullName</span>;
+    <span class="hljs-comment">// ...</span>
+    [aPerson release];
+}
+</code></pre>
+<p>由于我们使用的alloc创建,所以内存需要我们这里进行管理,使用release</p>
+<h2 id="">使用自动释放</h2>
+<pre><code class="lang-objc">- (<span class="hljs-built_in">NSString</span> *)fullName {
+    <span class="hljs-built_in">NSString</span> *string = [[[<span class="hljs-built_in">NSString</span> alloc] initWithFormat:<span class="hljs-string">@"%@ %@"</span>,
+                                          <span class="hljs-keyword">self</span><span class="hljs-variable">.firstName</span>, <span class="hljs-keyword">self</span><span class="hljs-variable">.lastName</span>] autorelease];
+    <span class="hljs-keyword">return</span> string;
+}
+</code></pre>
+<p>你使用alloc就代表拥有这个string,为了遵守内存管理原则,你必须在丢失这个实例之前放弃这个对象的持有权.如果你使用release,那么这个string在return之前就已经被释放,就会导致异常.</p>
+<p>使用autorelease代表你放弃持有权,但是你运行获取者在对象销毁之前使用该对象.</p>
+<p>当然也可以这样实现</p>
+<pre><code class="lang-objc">- (<span class="hljs-built_in">NSString</span> *)fullName {
+    <span class="hljs-built_in">NSString</span> *string = [<span class="hljs-built_in">NSString</span> stringWithFormat:<span class="hljs-string">@"%@ %@"</span>,
+                                 <span class="hljs-keyword">self</span><span class="hljs-variable">.firstName</span>, <span class="hljs-keyword">self</span><span class="hljs-variable">.lastName</span>];
+    <span class="hljs-keyword">return</span> string;
+}
+</code></pre>
+<h2 id="dealloc">重写dealloc</h2>
+<p>下面例子表示在Person类中怎么实现dealloc 方法</p>
+<font color = "red">注意：永远不要手动调用dealloc方法</font>
+
+<pre><code class="lang-objc">
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Person</span> : <span class="hljs-title">NSObject</span></span>
+<span class="hljs-keyword">@property</span> (retain) <span class="hljs-built_in">NSString</span> *firstName;
+<span class="hljs-keyword">@property</span> (retain) <span class="hljs-built_in">NSString</span> *lastName;
+<span class="hljs-keyword">@property</span> (<span class="hljs-keyword">assign</span>, <span class="hljs-keyword">readonly</span>) <span class="hljs-built_in">NSString</span> *fullName;
+<span class="hljs-keyword">@end</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Person</span></span>
+<span class="hljs-comment">// ...</span>
+- (<span class="hljs-keyword">void</span>)dealloc
+    [_firstName release];
+    [_lastName release];
+    <span class="hljs-comment">// 最后调用</span>
+    [<span class="hljs-keyword">super</span> dealloc];
+}
+<span class="hljs-keyword">@end</span>
+</code></pre>
+
+                    
+                    </section>
+                
                 
                 </div>
             </div>
         </div>
 
         
-        <a href="./NSMutableDictionary.html" class="navigation navigation-prev " aria-label="Previous page: NSMutableDictionary"><i class="fa fa-angle-left"></i></a>
+        <a href="./NSMutableSet.html" class="navigation navigation-prev " aria-label="Previous page: NSMutableSet"><i class="fa fa-angle-left"></i></a>
         
         
         <a href="./Property.html" class="navigation navigation-next " aria-label="Next page: Property"><i class="fa fa-angle-right"></i></a>

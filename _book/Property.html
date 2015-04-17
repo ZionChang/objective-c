@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Property | </title>
+        <title>Property | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="5" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="5" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter " data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,13 +611,113 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_24">
+                    
+                        <h1 id="">属性</h1>
+<p>我们之前都是通过手动编写setter以及getter方法来进行成员变量的访问,而属性就可以便利的为我们提供这些,并且属性会自动生成带下划线的成员变量。</p>
+<h2 id="">格式如下</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 在Person.h文件增加了两个属性</span>
+
+<span class="hljs-class"><span class="hljs-keyword">@interface</span> <span class="hljs-title">Person</span> : <span class="hljs-title">NSObject</span></span>
+
+<span class="hljs-keyword">@property</span> <span class="hljs-built_in">NSString</span> *firstName;
+<span class="hljs-keyword">@property</span> <span class="hljs-built_in">NSString</span> *lastName;
+
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p>申明这两个属性之后,我们就可以直接使用getter以及setter方法,或者直接使用点语法</p>
+<h2 id="getset">get&amp;set</h2>
+<pre><code class="lang-objc">Person *person = [[Person alloc] init];
+<span class="hljs-comment">// getter</span>
+<span class="hljs-built_in">NSString</span> *firstName = [person firstName];
+<span class="hljs-comment">// setter</span>
+[person setFirstName:<span class="hljs-string">@"Jone"</span>];
+</code></pre>
+<h2 id="">关键字讲解</h2>
+<pre><code class="lang-objc"> <span class="hljs-keyword">@property</span>
+
+ 第一类：内存管理相关
+     <span class="hljs-keyword">assign</span>  :  缺省值   修饰基本数据类型和delegate对象
+     retain  :  对象类型
+     <span class="hljs-keyword">copy</span>    :  对象类型（在遵守&lt;NSCoping&gt;情况下）
+ 第二类：线程相关
+     atomic   :   缺省值 ，关心线程安全，通常用于多线程中
+     <span class="hljs-keyword">nonatomic</span>:  不关心线程安全，通常用于单线程中
+ 第三类：
+     <span class="hljs-keyword">readwrite</span>: 读写 缺省值
+     <span class="hljs-keyword">readonly</span>:  只读  (只提供getter方法，不提供setter方法)
+
+ getter 、setter:重定义getter和setter方法名
+
+ ARC模式下：
+ <span class="hljs-keyword">weak</span>   相当于  <span class="hljs-keyword">assign</span>   相当于，但不等价 注意
+ <span class="hljs-keyword">strong</span> 相当于  retain   相当于
+</code></pre>
+<h2 id="">自定义合成变量名</h2>
+<p>在iOS5之后,如果不进行变量名合成,系统会自动生成带下划线的成员变量,接下来我们自定义合成变量名</p>
+<p>在Person.m我们可以看到可以直接使用_firstName;</p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Person</span></span>
+- (instancetype)init
+{
+    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
+    <span class="hljs-comment">// 使用系统生成的带下划线的名字</span>
+        _firstName = <span class="hljs-string">@"hello"</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
+}
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p>如果自定义该变量名就使用@synthesize关键字,示例:</p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Person</span></span>
+<span class="hljs-comment">// 重新合成名字</span>
+<span class="hljs-keyword">@synthesize</span> firstName = first;
+- (instancetype)init
+{
+    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
+    <span class="hljs-comment">// 使用合成的名字</span>
+        first = <span class="hljs-string">@"hello"</span>;
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
+}
+<span class="hljs-keyword">@end</span>
+</code></pre>
+<p>大家可以实验,如果当前我创建一个Student类继承与Person类,那么在里面<font color = "red">无法使用_firstName</font></p>
+<pre><code class="lang-objc">  _firstName = @&quot;asdf&quot;;
+  // 报错原因
+  Use of undeclared identifier &#39;_firstName&#39;
+</code></pre>
+<p>这个时候如果使用上面的关键字就可以解决,否则就使用self.firstName,下面解决方法</p>
+<pre><code class="lang-objc"><span class="hljs-class"><span class="hljs-keyword">@implementation</span> <span class="hljs-title">Student</span></span>
+
+<span class="hljs-keyword">@synthesize</span> firstName = _firstName;
+
+- (instancetype)init
+{
+    <span class="hljs-keyword">self</span> = [<span class="hljs-keyword">super</span> init];
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">self</span>) {
+        _firstName = <span class="hljs-string">@"asdf"</span>;
+
+    }
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">self</span>;
+}
+
+<span class="hljs-keyword">@end</span>
+</code></pre>
+
+                    
+                    </section>
                 
                 
                 </div>

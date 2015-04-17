@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>NSMutableArray | </title>
+        <title>NSMutableArray | 个人网站</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.3">
@@ -33,7 +33,7 @@
 
 
         
-    <div class="book"  data-level="3.9" data-basepath="." data-revision="1428937814129">
+    <div class="book"  data-level="3.10" data-basepath="." data-revision="1429237072810">
     
 
 <div class="book-summary">
@@ -210,13 +210,29 @@
         </li>
     
         
-        <li class="chapter " data-level="3.7" data-path="NSNull.html">
+        <li class="chapter " data-level="3.7" data-path="NSCalendar.html">
+            
+                
+                    <a href="./NSCalendar.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.7.</b>
+                        
+                         NSCalendar
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8" data-path="NSNull.html">
             
                 
                     <a href="./NSNull.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.7.</b>
+                            <b>3.8.</b>
                         
                          NSNull
                     </a>
@@ -226,13 +242,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.8" data-path="NSArray.html">
+        <li class="chapter " data-level="3.9" data-path="NSArray.html">
             
                 
                     <a href="./NSArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.8.</b>
+                            <b>3.9.</b>
                         
                          NSArray
                     </a>
@@ -242,13 +258,13 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.9" data-path="NSMutableArray.html">
+        <li class="chapter active" data-level="3.10" data-path="NSMutableArray.html">
             
                 
                     <a href="./NSMutableArray.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.9.</b>
+                            <b>3.10.</b>
                         
                          NSMutableArray
                     </a>
@@ -258,13 +274,13 @@
         </li>
     
         
-        <li class="chapter " data-level="3.10" data-path="NSDictionary.html">
+        <li class="chapter " data-level="3.11" data-path="NSDictionary.html">
             
                 
                     <a href="./NSDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.10.</b>
+                            <b>3.11.</b>
                         
                          NSDictionary
                     </a>
@@ -274,15 +290,47 @@
         </li>
     
         
-        <li class="chapter " data-level="3.11" data-path="NSMutableDictionary.html">
+        <li class="chapter " data-level="3.12" data-path="NSMutableDictionary.html">
             
                 
                     <a href="./NSMutableDictionary.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>3.11.</b>
+                            <b>3.12.</b>
                         
                          NSMutableDictionary
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13" data-path="NSSet.html">
+            
+                
+                    <a href="./NSSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.13.</b>
+                        
+                         NSSet
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14" data-path="NSMutableSet.html">
+            
+                
+                    <a href="./NSMutableSet.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.14.</b>
+                        
+                         NSMutableSet
                     </a>
                 
             
@@ -563,13 +611,80 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="./" ></a>
+        <a href="./" >个人网站</a>
     </h1>
 </div>
 
             <div class="page-wrapper" tabindex="-1">
                 <div class="page-inner">
                 
+                
+                    <section class="normal" id="section-gitbook_13">
+                    
+                        <h1 id="nsmutablearray">NSMutableArray</h1>
+<p>可变数组,主要方便我们进行增删改查,继承与NSArray</p>
+<ul>
+<li><a href="#init">初始化</a></li>
+<li><a href="#add">增加</a></li>
+<li><a href="#insert">插入</a></li>
+<li><a href="#modify">修改</a></li>
+<li><a href="#remove">删除</a></li>
+<li><a href="#contain">查找</a></li>
+<li><a href="#exchange">交换</a></li>
+<li><a href="#sort">排序</a></li>
+</ul>
+<p><span id = "init"></p>
+<h2 id="">初始化</h2>
+<p>初始化方式直接使用父类的初始化方式</p>
+<pre><code class="lang-objc"><span class="hljs-built_in">NSMutableArray</span> *array = [[<span class="hljs-built_in">NSMutableArray</span> alloc] initWithObjects:<span class="hljs-string">@"hello"</span>, <span class="hljs-string">@"world"</span>, <span class="hljs-literal">nil</span>];
+</code></pre>
+<p><span id = "add"></p>
+<h2 id="">增加</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 增加到最后</span>
+[array addObject:<span class="hljs-string">@"android"</span>];
+</code></pre>
+<p><span id = "insert"></p>
+<h2 id="">插入</h2>
+<pre><code class="lang-objc">[array insertObject:<span class="hljs-string">@"iOS"</span> atIndex:<span class="hljs-number">1</span>];
+</code></pre>
+<p><span id = "modify"></p>
+<h2 id="">修改</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 将下标为2的对象以后面传入的对象进行替换</span>
+[array replaceObjectAtIndex:<span class="hljs-number">2</span> withObject:<span class="hljs-string">@"iOS!!!!"</span>];
+</code></pre>
+<p><span id = "remove"></p>
+<h2 id="">删除</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 删除具体某一个</span>
+[array removeObjectAtIndex:<span class="hljs-number">0</span>];
+<span class="hljs-comment">// 以范围进行删除,从第1个开始，删除2个</span>
+[array removeObjectsInRange:NSMakeRange(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>)];
+<span class="hljs-comment">// 删除所有元素</span>
+[array removeAllObjects];
+<span class="hljs-comment">// 删除最后一个</span>
+[array removeLastObject];
+</code></pre>
+<p><span id = "contain"></p>
+<h2 id="">查找</h2>
+<p>直接使用父类的方法</p>
+<pre><code class="lang-objc">[array containsObject:<span class="hljs-string">@"android"</span>];
+</code></pre>
+<p><span id = "exchange"></p>
+<h2 id="">交换</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 下标为1的对象与下标为2的对象进行交换</span>
+[array exchangeObjectAtIndex:<span class="hljs-number">1</span> withObjectAtIndex:<span class="hljs-number">2</span>];
+</code></pre>
+<p><span id = "sort"></p>
+<h2 id="">排序</h2>
+<pre><code class="lang-objc"><span class="hljs-comment">// 使用系统方式</span>
+[array sortUsingSelector:<span class="hljs-keyword">@selector</span>(caseInsensitiveCompare:)];
+<span class="hljs-comment">// 使用代码块</span>
+[array sortUsingComparator:^NSComparisonResult(<span class="hljs-keyword">id</span> obj1, <span class="hljs-keyword">id</span> obj2) {
+   <span class="hljs-keyword">return</span> [obj1 compare:obj2];
+}];
+</code></pre>
+
+                    
+                    </section>
                 
                 
                 </div>
