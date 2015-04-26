@@ -39,7 +39,7 @@
 
 分析代码:
 
-* 利用了<font color = "blue">static</font>关键字,这样以来该变量就会一直存储在静态区别,和系统同生共死.
+* 利用了<font color = "blue">static</font>关键字,这样以来该变量就会一直存储在静态区的,和系统同生共死.
 * 利用gcd保证 `instance = [[self alloc] init];`这句代码只会执行一次,也就说明该对象一旦创建出来,就不会被重新创建
 
 <span id = "system">
@@ -79,7 +79,7 @@ NSUserDefaults *user1 = [NSUserDefaults standardUserDefaults];
 
 大家可以看到,在这里NSUserDefaults使用类似于字典,不管是取值还是存值,但是注意两点:
 
-* key只能是字符串 
+* key只能是字符串
 * 支持基本数据类型存储
 
 ```objc
