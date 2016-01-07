@@ -4,7 +4,7 @@
 
 个人维护的一个博客,主要是对iOS方面的一些文章分享
 
-网址:[archerzz](http://archerzz.ninja)
+网址:[archerzz](http://archerzz.com)
 
 
 ##联系我
